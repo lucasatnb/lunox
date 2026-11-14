@@ -1046,11 +1046,17 @@ self.onmessage = function (e) {
         aviso('', 'Publicando para todos os usuários…');
         const d = await publicarRemoto();
         const g = d.github;
-        aviso('ok', 'Publicado!' +
+        const msg = 'Publicado!' +
           (d.publicado ? ' ' + d.publicado.estrelas + ' estrela(s) no ar' : '') +
           (g && g.commit ? ' · commit ' + g.commit.slice(0, 7) + ' no GitHub' : '') +
-          (d.aviso ? ' — ' + d.aviso : ''));
+          (d.aviso ? ' — ' + d.aviso : '');
+        aviso('ok', msg);
         status('Conteúdo publicado');
+        // O conteúdo agora vem do KV: descarta o rascunho e recarrega para a
+        // página ler o que está no ar (senão ela ficaria com o arquivo antigo).
+        try { sessionStorage.setItem('lunox_admin_publicado', msg); } catch { /* sem sessionStorage */ }
+        A.descartarRascunho();
+        setTimeout(() => location.reload(), 1600);
         return;
       }
 
@@ -1200,7 +1206,17 @@ self.onmessage = function (e) {
   renderLista();
   renderEditor();
 
-  if (A.temRascunho()) {
-    aviso('', 'Existe um rascunho salvo neste navegador. Ele já aparece na trilha; para publicar no site, use "Salvar no arquivo" e "Publicar no site".');
+  try {
+    const publicado = sessionStorage.getItem('lunox_admin_publicado');
+    if (publicado) {
+      sessionStorage.removeItem('lunox_admin_publicado');
+      aviso('ok', publicado);
+    } else if (A.temRascunho()) {
+      aviso('', 'Existe um rascunho salvo neste navegador. Ele já aparece na trilha; para publicar para todos, use "Publicar para todos" ou envie o arquivo.');
+    }
+  } catch {
+    if (A.temRascunho()) {
+      aviso('', 'Existe um rascunho salvo neste navegador. Ele já aparece na trilha; para publicar para todos, use "Publicar para todos" ou envie o arquivo.');
+    }
   }
 })();
