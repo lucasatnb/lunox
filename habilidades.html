@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Mapa das estrelas</title>
+<meta name="description" content="O céu do Lunox: cada estrela é uma habilidade, e o mapa se revela conforme você aprende.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app-sky.css">
+<link rel="stylesheet" href="conta.css">
+</head>
+<body class="sky-page">
+
+<header id="topbar"></header>
+
+<main class="sky-wrap">
+
+  <div class="sky" id="sky">
+
+    <div class="mapa" id="mapa">
+      <div class="sky-loading"><span class="spin"></span> acendendo o céu…</div>
+    </div>
+
+    <div class="sky-brand">
+      <div class="kicker">Mapa das estrelas</div>
+      <h1>Seu céu</h1>
+      <p>Cada estrela acesa revela as vizinhas.</p>
+    </div>
+
+    <div class="sky-tools">
+      <button id="zoom-in" type="button" aria-label="Aproximar" title="Aproximar">+</button>
+      <button id="zoom-out" type="button" aria-label="Afastar" title="Afastar">−</button>
+      <button id="recentrar" type="button" aria-label="Recentralizar" title="Recentralizar">⤢</button>
+    </div>
+
+    <button class="sky-cta" id="btn-teste" type="button">
+      <span class="spark">✦</span>
+      <span><b>Descobrir o que eu já sei</b><i>6 mini-exercícios corrigidos pela IA</i></span>
+    </button>
+
+    <div class="sky-foot">
+      <span class="dot"></span><b id="sky-count">0</b> estrelas no seu céu · arraste para explorar
+    </div>
+
+    <div class="star-pop" id="pop" hidden>
+      <div class="sp-kicker" id="pop-kicker"></div>
+      <div class="sp-name" id="pop-name"></div>
+      <div class="sp-meta" id="pop-meta"></div>
+      <div class="sp-foot">
+        <span class="chip" id="pop-state"></span>
+        <button class="btn small ghost" id="pop-acao" type="button" hidden></button>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<dialog class="quiz" id="quiz" aria-labelledby="quiz-q">
+  <button class="quiz-x" id="quiz-x" type="button" aria-label="Fechar">×</button>
+
+  <div class="quiz-top">
+    <span class="quiz-kicker" id="quiz-kicker">teste rápido</span>
+    <div class="quiz-dots" id="quiz-dots"></div>
+    <span class="quiz-num" id="quiz-num">1 / 6</span>
+  </div>
+
+  <div id="quiz-body">
+    <h2 id="quiz-q">…</h2>
+    <p class="quiz-sub" id="quiz-sub"></p>
+    <ul class="quiz-reqs" id="quiz-reqs"></ul>
+    <textarea class="quiz-code" id="quiz-code" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Seu código"></textarea>
+
+    <div class="quiz-spin" id="quiz-spin" hidden>
+      <span class="spin"></span><span id="quiz-spin-txt">rodando os testes…</span>
+    </div>
+    <div class="quiz-fb" id="quiz-fb" hidden></div>
+
+    <div class="quiz-actions" id="quiz-actions">
+      <button class="btn primary" type="button" id="quiz-enviar">Enviar para a IA</button>
+      <button class="btn ghost" type="button" id="quiz-pular">Ainda não sei</button>
+      <button class="btn primary" type="button" id="quiz-prox" hidden>Próxima →</button>
+    </div>
+  </div>
+
+  <div class="quiz-result" id="quiz-result" hidden></div>
+
+  <p class="quiz-note">Sem nota e sem pressa. Seu código roda no navegador e a IA confere se você usou o conceito de verdade. Errar não tira nada de você.</p>
+</dialog>
+
+<script src="app-core.js"></script>
+<script src="estrelas-extra.js"></script>
+<script src="estrelas-catalogo.js"></script>
+<script src="habilidades.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

@@ -1,0 +1,2005 @@
+{
+ "canvas": {
+  "largura": 1684,
+  "altura": 1191,
+  "centro": [
+   902.0,
+   615.5
+  ]
+ },
+ "raizes": [
+  {
+   "id": "FU",
+   "nome": "Fundamentos",
+   "descricao": "A base de tudo: lógica, primeira linguagem e hábitos de programador",
+   "cor": "#ffd666",
+   "cor_clara": "#ffe8aa"
+  },
+  {
+   "id": "FE",
+   "nome": "Front-end",
+   "descricao": "O que o usuário vê e toca no navegador",
+   "cor": "#78c8ff",
+   "cor_clara": "#b4e0ff"
+  },
+  {
+   "id": "MO",
+   "nome": "Mobile",
+   "descricao": "Apps para celular",
+   "cor": "#ff82ff",
+   "cor_clara": "#ffbaff"
+  },
+  {
+   "id": "BE",
+   "nome": "Back-end",
+   "descricao": "Servidores, APIs e regras de negócio",
+   "cor": "#ff8c78",
+   "cor_clara": "#ffbfb4"
+  },
+  {
+   "id": "DB",
+   "nome": "Banco de Dados",
+   "descricao": "Guardar, organizar e consultar informação",
+   "cor": "#6ee6c8",
+   "cor_clara": "#aff1e0"
+  },
+  {
+   "id": "DO",
+   "nome": "DevOps e Nuvem",
+   "descricao": "Colocar no ar, automatizar e manter funcionando",
+   "cor": "#ffaa50",
+   "cor_clara": "#ffd09e"
+  },
+  {
+   "id": "SE",
+   "nome": "Segurança",
+   "descricao": "Proteger usuários, dados e sistemas",
+   "cor": "#ff78aa",
+   "cor_clara": "#ffb4d0"
+  },
+  {
+   "id": "EM",
+   "nome": "Embarcados e IoT",
+   "descricao": "Código que roda em placas, sensores e dispositivos",
+   "cor": "#d7ff78",
+   "cor_clara": "#e9ffb4"
+  },
+  {
+   "id": "IA",
+   "nome": "Dados e IA",
+   "descricao": "Análise de dados, machine learning e LLMs",
+   "cor": "#be96ff",
+   "cor_clara": "#dbc5ff"
+  },
+  {
+   "id": "BO",
+   "nome": "Bots e Automação",
+   "descricao": "Scripts, bots e ferramentas que poupam trabalho",
+   "cor": "#ffcda0",
+   "cor_clara": "#ffe3ca"
+  },
+  {
+   "id": "JG",
+   "nome": "Jogos",
+   "descricao": "Game loop, engines, física e mods",
+   "cor": "#8c96ff",
+   "cor_clara": "#bfc5ff"
+  },
+  {
+   "id": "ES",
+   "nome": "Engenharia de Software",
+   "descricao": "Como construir software bem, em equipe",
+   "cor": "#f0f0f0",
+   "cor_clara": "#f6f6f6"
+  }
+ ],
+ "niveis": {
+  "1": "essencial",
+  "2": "importante",
+  "3": "avançada"
+ },
+ "estrelas": [
+  {
+   "id": "FU",
+   "nome": "Fundamentos",
+   "raiz": "FU",
+   "nivel": 0,
+   "pai": "H",
+   "x": 783.8,
+   "y": 629.6
+  },
+  {
+   "id": "FE",
+   "nome": "Front-end",
+   "raiz": "FE",
+   "nivel": 0,
+   "pai": "H",
+   "x": 822.4,
+   "y": 684.2
+  },
+  {
+   "id": "MO",
+   "nome": "Mobile",
+   "raiz": "MO",
+   "nivel": 0,
+   "pai": "H",
+   "x": 855.0,
+   "y": 700.1
+  },
+  {
+   "id": "BE",
+   "nome": "Back-end",
+   "raiz": "BE",
+   "nivel": 0,
+   "pai": "H",
+   "x": 928.1,
+   "y": 705.3
+  },
+  {
+   "id": "DB",
+   "nome": "Banco de Dados",
+   "raiz": "DB",
+   "nivel": 0,
+   "pai": "H",
+   "x": 991.1,
+   "y": 676.9
+  },
+  {
+   "id": "DO",
+   "nome": "DevOps e Nuvem",
+   "raiz": "DO",
+   "nivel": 0,
+   "pai": "H",
+   "x": 1017.6,
+   "y": 639.2
+  },
+  {
+   "id": "SE",
+   "nome": "Segurança",
+   "raiz": "SE",
+   "nivel": 0,
+   "pai": "H",
+   "x": 1019.3,
+   "y": 597.4
+  },
+  {
+   "id": "EM",
+   "nome": "Embarcados e IoT",
+   "raiz": "EM",
+   "nivel": 0,
+   "pai": "H",
+   "x": 996.3,
+   "y": 558.9
+  },
+  {
+   "id": "IA",
+   "nome": "Dados e IA",
+   "raiz": "IA",
+   "nivel": 0,
+   "pai": "H",
+   "x": 948.3,
+   "y": 530.7
+  },
+  {
+   "id": "BO",
+   "nome": "Bots e Automação",
+   "raiz": "BO",
+   "nivel": 0,
+   "pai": "H",
+   "x": 889.5,
+   "y": 524.0
+  },
+  {
+   "id": "JG",
+   "nome": "Jogos",
+   "raiz": "JG",
+   "nivel": 0,
+   "pai": "H",
+   "x": 831.7,
+   "y": 541.1
+  },
+  {
+   "id": "ES",
+   "nome": "Engenharia de Software",
+   "raiz": "ES",
+   "nivel": 0,
+   "pai": "H",
+   "x": 799.6,
+   "y": 568.0
+  },
+  {
+   "id": "FU1",
+   "nome": "Lógica de programação",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU",
+   "x": 625.8,
+   "y": 648.5,
+   "por_que": "Pensar em passos e decisões antes de escrever código; base de todas as outras estrelas."
+  },
+  {
+   "id": "FU20",
+   "nome": "Python",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU1",
+   "x": 561.8,
+   "y": 628.2,
+   "por_que": "Python como 1ª linguagem: sintaxe simples para praticar logo; serve para back-end, dados, IA e bots."
+  },
+  {
+   "id": "FU2",
+   "nome": "Variáveis e tipos",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU20",
+   "x": 500.8,
+   "y": 630.5,
+   "por_que": "Guardar e nomear informação é o primeiro bloco de qualquer programa."
+  },
+  {
+   "id": "FU3",
+   "nome": "Condicionais",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU2",
+   "x": 439.4,
+   "y": 604.0,
+   "por_que": "Faz o programa decidir (if/else); aparece em tudo, de bots a jogos."
+  },
+  {
+   "id": "FU4",
+   "nome": "Laços de repetição",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU3",
+   "x": 378.4,
+   "y": 602.4,
+   "por_que": "Repetir tarefas sem copiar código; essencial para listas, jogos e automação."
+  },
+  {
+   "id": "FU5",
+   "nome": "Funções",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU4",
+   "x": 321.9,
+   "y": 557.3,
+   "por_que": "Organiza e reaproveita código; porta de entrada para OOP, testes e arquitetura."
+  },
+  {
+   "id": "FU6",
+   "nome": "Listas e dicionários",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU4",
+   "x": 318.2,
+   "y": 644.6,
+   "por_que": "As estruturas mais usadas no dia a dia; base de JSON, APIs e dados."
+  },
+  {
+   "id": "FU7",
+   "nome": "Strings e texto",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU2",
+   "x": 443.1,
+   "y": 661.5
+  },
+  {
+   "id": "FU8",
+   "nome": "Arquivos e I/O",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU5",
+   "x": 277.5,
+   "y": 488.1
+  },
+  {
+   "id": "FU9",
+   "nome": "Erros e exceções",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU5",
+   "x": 264.4,
+   "y": 535.3
+  },
+  {
+   "id": "FU10",
+   "nome": "Orientação a objetos",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU5",
+   "x": 257.3,
+   "y": 583.3
+  },
+  {
+   "id": "FU11",
+   "nome": "Algoritmos básicos",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU6",
+   "x": 257.3,
+   "y": 647.7
+  },
+  {
+   "id": "FU12",
+   "nome": "Estruturas de dados",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU11",
+   "x": 196.3,
+   "y": 650.7
+  },
+  {
+   "id": "FU13",
+   "nome": "Complexidade (Big-O)",
+   "raiz": "FU",
+   "nivel": 3,
+   "pai": "FU12",
+   "x": 135.3,
+   "y": 653.8
+  },
+  {
+   "id": "FU14",
+   "nome": "Recursão",
+   "raiz": "FU",
+   "nivel": 3,
+   "pai": "FU5",
+   "x": 255.9,
+   "y": 615.5
+  },
+  {
+   "id": "FU15",
+   "nome": "Terminal (CLI)",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU1",
+   "x": 567.8,
+   "y": 666.1,
+   "por_que": "Rodar, instalar e automatizar sem interface; indispensável em DevOps e back-end."
+  },
+  {
+   "id": "FU16",
+   "nome": "Git e GitHub",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU15",
+   "x": 507.9,
+   "y": 675.2,
+   "por_que": "Versionar, trabalhar em equipe e montar portfólio."
+  },
+  {
+   "id": "FU17",
+   "nome": "Depuração (debug)",
+   "raiz": "FU",
+   "nivel": 1,
+   "pai": "FU9",
+   "x": 208.1,
+   "y": 510.4,
+   "por_que": "Achar e corrigir bugs com método, em vez de tentativa e erro."
+  },
+  {
+   "id": "FU18",
+   "nome": "Ler documentação",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU1",
+   "x": 572.8,
+   "y": 682.7
+  },
+  {
+   "id": "FU19",
+   "nome": "Testes automatizados",
+   "raiz": "FU",
+   "nivel": 2,
+   "pai": "FU9",
+   "x": 200.7,
+   "y": 545.2
+  },
+  {
+   "id": "FE1",
+   "nome": "HTML",
+   "raiz": "FE",
+   "nivel": 1,
+   "pai": "FE",
+   "x": 716.0,
+   "y": 776.0,
+   "por_que": "A estrutura de toda página web."
+  },
+  {
+   "id": "FE2",
+   "nome": "CSS",
+   "raiz": "FE",
+   "nivel": 1,
+   "pai": "FE1",
+   "x": 647.9,
+   "y": 789.9,
+   "por_que": "Dá visual e layout às páginas; base da responsividade."
+  },
+  {
+   "id": "FE3",
+   "nome": "JavaScript",
+   "raiz": "FE",
+   "nivel": 1,
+   "pai": "FE2",
+   "x": 562.8,
+   "y": 781.0,
+   "por_que": "Linguagem da web; leva interação ao navegador e também roda no servidor."
+  },
+  {
+   "id": "FE4",
+   "nome": "DOM e eventos",
+   "raiz": "FE",
+   "nivel": 1,
+   "pai": "FE3",
+   "x": 482.2,
+   "y": 765.4,
+   "por_que": "Como o JS lê e altera a página; abre caminho para React e scraping."
+  },
+  {
+   "id": "FE5",
+   "nome": "Flexbox e Grid",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE2",
+   "x": 620.4,
+   "y": 835.8
+  },
+  {
+   "id": "FE6",
+   "nome": "Design responsivo",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE5",
+   "x": 566.9,
+   "y": 861.1
+  },
+  {
+   "id": "FE7",
+   "nome": "Acessibilidade",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE1",
+   "x": 705.9,
+   "y": 829.7
+  },
+  {
+   "id": "FE8",
+   "nome": "Fetch e APIs",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE4",
+   "x": 413.4,
+   "y": 761.0
+  },
+  {
+   "id": "FE9",
+   "nome": "TypeScript",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE3",
+   "x": 528.2,
+   "y": 825.4
+  },
+  {
+   "id": "FE10",
+   "nome": "React",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE4",
+   "x": 442.2,
+   "y": 808.7
+  },
+  {
+   "id": "FE11",
+   "nome": "Estado e hooks",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE10",
+   "x": 371.4,
+   "y": 805.0
+  },
+  {
+   "id": "FE12",
+   "nome": "Rotas (SPA)",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE10",
+   "x": 388.6,
+   "y": 831.2
+  },
+  {
+   "id": "FE13",
+   "nome": "Tailwind CSS",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE5",
+   "x": 588.5,
+   "y": 877.4
+  },
+  {
+   "id": "FE14",
+   "nome": "Next.js e SSR",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE12",
+   "x": 335.0,
+   "y": 853.7
+  },
+  {
+   "id": "FE15",
+   "nome": "Vite e bundlers",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE3",
+   "x": 546.8,
+   "y": 843.7
+  },
+  {
+   "id": "FE16",
+   "nome": "Testes de front-end",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE10",
+   "x": 408.0,
+   "y": 856.5
+  },
+  {
+   "id": "FE17",
+   "nome": "Performance web",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE15",
+   "x": 499.9,
+   "y": 873.8
+  },
+  {
+   "id": "FE18",
+   "nome": "UX/UI e Figma",
+   "raiz": "FE",
+   "nivel": 2,
+   "pai": "FE6",
+   "x": 522.7,
+   "y": 893.5
+  },
+  {
+   "id": "FE19",
+   "nome": "Animações",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE2",
+   "x": 649.7,
+   "y": 856.0
+  },
+  {
+   "id": "FE20",
+   "nome": "PWA",
+   "raiz": "FE",
+   "nivel": 3,
+   "pai": "FE17",
+   "x": 453.0,
+   "y": 904.0
+  },
+  {
+   "id": "BE1",
+   "nome": "HTTP e a web",
+   "raiz": "BE",
+   "nivel": 1,
+   "pai": "BE",
+   "x": 962.9,
+   "y": 825.3,
+   "por_que": "Como cliente e servidor conversam; sustenta APIs, segurança e deploy."
+  },
+  {
+   "id": "BE2",
+   "nome": "APIs REST",
+   "raiz": "BE",
+   "nivel": 1,
+   "pai": "BE1",
+   "x": 904.1,
+   "y": 877.5,
+   "por_que": "O contrato entre front-end, mobile, bots e IA; muito pedida no mercado."
+  },
+  {
+   "id": "BE3",
+   "nome": "Flask",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE1",
+   "x": 1013.9,
+   "y": 863.0
+  },
+  {
+   "id": "BE4",
+   "nome": "FastAPI",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE3",
+   "x": 1021.4,
+   "y": 910.5
+  },
+  {
+   "id": "BE5",
+   "nome": "Node.js",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE1",
+   "x": 1045.0,
+   "y": 853.3
+  },
+  {
+   "id": "BE6",
+   "nome": "Express",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE5",
+   "x": 1070.7,
+   "y": 895.9
+  },
+  {
+   "id": "BE7",
+   "nome": "Autenticação",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE2",
+   "x": 812.8,
+   "y": 916.8
+  },
+  {
+   "id": "BE8",
+   "nome": "JWT e sessões",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE7",
+   "x": 799.2,
+   "y": 962.6
+  },
+  {
+   "id": "BE9",
+   "nome": "OAuth",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE8",
+   "x": 785.7,
+   "y": 1008.4
+  },
+  {
+   "id": "BE10",
+   "nome": "ORM",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE3",
+   "x": 1046.4,
+   "y": 903.9
+  },
+  {
+   "id": "BE11",
+   "nome": "Validação de dados",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE2",
+   "x": 838.7,
+   "y": 920.6
+  },
+  {
+   "id": "BE12",
+   "nome": "WebSockets",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE2",
+   "x": 864.9,
+   "y": 923.2
+  },
+  {
+   "id": "BE13",
+   "nome": "Filas e tarefas",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE12",
+   "x": 859.3,
+   "y": 970.0
+  },
+  {
+   "id": "BE14",
+   "nome": "Cache",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE2",
+   "x": 891.3,
+   "y": 924.4
+  },
+  {
+   "id": "BE15",
+   "nome": "Arquitetura em camadas",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE2",
+   "x": 917.7,
+   "y": 924.3
+  },
+  {
+   "id": "BE16",
+   "nome": "Microsserviços",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE15",
+   "x": 920.0,
+   "y": 971.2
+  },
+  {
+   "id": "BE17",
+   "nome": "GraphQL",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE2",
+   "x": 944.0,
+   "y": 922.8
+  },
+  {
+   "id": "BE18",
+   "nome": "Webhooks",
+   "raiz": "BE",
+   "nivel": 2,
+   "pai": "BE2",
+   "x": 970.1,
+   "y": 920.0
+  },
+  {
+   "id": "BE19",
+   "nome": "OpenAPI / Swagger",
+   "raiz": "BE",
+   "nivel": 3,
+   "pai": "BE2",
+   "x": 996.0,
+   "y": 915.9
+  },
+  {
+   "id": "DB1",
+   "nome": "SQL básico",
+   "raiz": "DB",
+   "nivel": 1,
+   "pai": "DB",
+   "x": 1110.2,
+   "y": 759.0,
+   "por_que": "Linguagem padrão para consultar e organizar dados."
+  },
+  {
+   "id": "DB2",
+   "nome": "Modelagem relacional",
+   "raiz": "DB",
+   "nivel": 1,
+   "pai": "DB1",
+   "x": 1118.2,
+   "y": 817.9,
+   "por_que": "Desenhar tabelas e relações certas evita retrabalho em qualquer sistema."
+  },
+  {
+   "id": "DB3",
+   "nome": "JOINs",
+   "raiz": "DB",
+   "nivel": 2,
+   "pai": "DB1",
+   "x": 1168.0,
+   "y": 779.1
+  },
+  {
+   "id": "DB4",
+   "nome": "Índices",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB3",
+   "x": 1207.5,
+   "y": 816.1
+  },
+  {
+   "id": "DB5",
+   "nome": "Transações (ACID)",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB3",
+   "x": 1223.6,
+   "y": 800.6
+  },
+  {
+   "id": "DB6",
+   "nome": "SQLite",
+   "raiz": "DB",
+   "nivel": 2,
+   "pai": "DB1",
+   "x": 1187.2,
+   "y": 758.7
+  },
+  {
+   "id": "DB7",
+   "nome": "PostgreSQL",
+   "raiz": "DB",
+   "nivel": 2,
+   "pai": "DB2",
+   "x": 1120.6,
+   "y": 874.7
+  },
+  {
+   "id": "DB8",
+   "nome": "MongoDB (NoSQL)",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB2",
+   "x": 1161.9,
+   "y": 851.1
+  },
+  {
+   "id": "DB9",
+   "nome": "Redis",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB8",
+   "x": 1190.0,
+   "y": 894.2
+  },
+  {
+   "id": "DB10",
+   "nome": "Migrações",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB7",
+   "x": 1141.2,
+   "y": 920.2
+  },
+  {
+   "id": "DB11",
+   "nome": "Normalização",
+   "raiz": "DB",
+   "nivel": 2,
+   "pai": "DB2",
+   "x": 1190.2,
+   "y": 830.8
+  },
+  {
+   "id": "DB12",
+   "nome": "Backup e restauração",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB7",
+   "x": 1166.2,
+   "y": 907.8
+  },
+  {
+   "id": "DB13",
+   "nome": "Bancos vetoriais",
+   "raiz": "DB",
+   "nivel": 3,
+   "pai": "DB8",
+   "x": 1212.6,
+   "y": 879.4
+  },
+  {
+   "id": "DO1",
+   "nome": "Linux",
+   "raiz": "DO",
+   "nivel": 1,
+   "pai": "DO",
+   "x": 1172.1,
+   "y": 670.9,
+   "por_que": "Sistema da maioria dos servidores; base para Docker e nuvem."
+  },
+  {
+   "id": "DO2",
+   "nome": "Shell script",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO1",
+   "x": 1205.8,
+   "y": 733.9
+  },
+  {
+   "id": "DO3",
+   "nome": "Redes (TCP/IP)",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO1",
+   "x": 1233.1,
+   "y": 676.8
+  },
+  {
+   "id": "DO4",
+   "nome": "Docker",
+   "raiz": "DO",
+   "nivel": 1,
+   "pai": "DO1",
+   "x": 1242.1,
+   "y": 629.1,
+   "por_que": "Empacota a aplicação para rodar igual em qualquer máquina."
+  },
+  {
+   "id": "DO5",
+   "nome": "Docker Compose",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO4",
+   "x": 1303.2,
+   "y": 631.5
+  },
+  {
+   "id": "DO6",
+   "nome": "CI/CD",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO5",
+   "x": 1363.2,
+   "y": 645.3
+  },
+  {
+   "id": "DO7",
+   "nome": "GitHub Actions",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO6",
+   "x": 1424.1,
+   "y": 649.3
+  },
+  {
+   "id": "DO8",
+   "nome": "Nuvem (AWS/GCP)",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO3",
+   "x": 1282.7,
+   "y": 714.0
+  },
+  {
+   "id": "DO9",
+   "nome": "Deploy",
+   "raiz": "DO",
+   "nivel": 1,
+   "pai": "DO8",
+   "x": 1333.0,
+   "y": 745.1,
+   "por_que": "Colocar o projeto no ar; é quando ele vira produto de verdade."
+  },
+  {
+   "id": "DO10",
+   "nome": "Nginx",
+   "raiz": "DO",
+   "nivel": 3,
+   "pai": "DO3",
+   "x": 1294.7,
+   "y": 680.6
+  },
+  {
+   "id": "DO11",
+   "nome": "Kubernetes",
+   "raiz": "DO",
+   "nivel": 3,
+   "pai": "DO5",
+   "x": 1364.7,
+   "y": 622.5
+  },
+  {
+   "id": "DO12",
+   "nome": "Terraform (IaC)",
+   "raiz": "DO",
+   "nivel": 3,
+   "pai": "DO8",
+   "x": 1347.2,
+   "y": 712.7
+  },
+  {
+   "id": "DO13",
+   "nome": "Monitoramento",
+   "raiz": "DO",
+   "nivel": 3,
+   "pai": "DO9",
+   "x": 1383.6,
+   "y": 774.2
+  },
+  {
+   "id": "DO14",
+   "nome": "Logs",
+   "raiz": "DO",
+   "nivel": 3,
+   "pai": "DO13",
+   "x": 1439.7,
+   "y": 792.7
+  },
+  {
+   "id": "DO15",
+   "nome": "DNS e HTTPS",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO3",
+   "x": 1299.3,
+   "y": 661.1
+  },
+  {
+   "id": "DO16",
+   "nome": "Variáveis de ambiente",
+   "raiz": "DO",
+   "nivel": 2,
+   "pai": "DO9",
+   "x": 1395.8,
+   "y": 750.1
+  },
+  {
+   "id": "SE1",
+   "nome": "Princípios (CIA)",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE",
+   "x": 1176.1,
+   "y": 573.3
+  },
+  {
+   "id": "SE2",
+   "nome": "Senhas e hash",
+   "raiz": "SE",
+   "nivel": 1,
+   "pai": "SE1",
+   "x": 1241.3,
+   "y": 592.3,
+   "por_que": "Nunca guardar senha em texto puro; primeiro hábito de segurança."
+  },
+  {
+   "id": "SE3",
+   "nome": "Criptografia",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE1",
+   "x": 1238.7,
+   "y": 576.1
+  },
+  {
+   "id": "SE4",
+   "nome": "HTTPS / TLS",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE3",
+   "x": 1299.1,
+   "y": 569.1
+  },
+  {
+   "id": "SE5",
+   "nome": "OWASP Top 10",
+   "raiz": "SE",
+   "nivel": 1,
+   "pai": "SE1",
+   "x": 1226.7,
+   "y": 536.4,
+   "por_que": "Lista das falhas web mais comuns; mapa para proteger qualquer app."
+  },
+  {
+   "id": "SE6",
+   "nome": "SQL Injection",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE5",
+   "x": 1294.6,
+   "y": 550.1
+  },
+  {
+   "id": "SE7",
+   "nome": "XSS e CSRF",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE5",
+   "x": 1288.6,
+   "y": 531.4
+  },
+  {
+   "id": "SE8",
+   "nome": "Gestão de segredos",
+   "raiz": "SE",
+   "nivel": 2,
+   "pai": "SE5",
+   "x": 1281.0,
+   "y": 513.1
+  },
+  {
+   "id": "SE9",
+   "nome": "Pentest básico",
+   "raiz": "SE",
+   "nivel": 3,
+   "pai": "SE5",
+   "x": 1272.0,
+   "y": 495.1
+  },
+  {
+   "id": "SE10",
+   "nome": "Hardening de servidor",
+   "raiz": "SE",
+   "nivel": 3,
+   "pai": "SE4",
+   "x": 1359.5,
+   "y": 562.0
+  },
+  {
+   "id": "IA1",
+   "nome": "NumPy",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA",
+   "x": 1059.7,
+   "y": 438.0
+  },
+  {
+   "id": "IA2",
+   "nome": "Pandas",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA1",
+   "x": 1094.2,
+   "y": 399.2
+  },
+  {
+   "id": "IA3",
+   "nome": "Visualização de dados",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA2",
+   "x": 1164.8,
+   "y": 381.8
+  },
+  {
+   "id": "IA4",
+   "nome": "Estatística",
+   "raiz": "IA",
+   "nivel": 1,
+   "pai": "IA",
+   "x": 973.7,
+   "y": 407.7,
+   "por_que": "Entender dados e incerteza; base de ML e da avaliação de modelos."
+  },
+  {
+   "id": "IA5",
+   "nome": "Álgebra linear",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA",
+   "x": 956.0,
+   "y": 404.6
+  },
+  {
+   "id": "IA6",
+   "nome": "scikit-learn",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA2",
+   "x": 1089.7,
+   "y": 342.3
+  },
+  {
+   "id": "IA7",
+   "nome": "KNN",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA6",
+   "x": 1181.4,
+   "y": 331.7
+  },
+  {
+   "id": "IA8",
+   "nome": "Avaliação de modelos",
+   "raiz": "IA",
+   "nivel": 1,
+   "pai": "IA6",
+   "x": 1156.9,
+   "y": 318.4,
+   "por_que": "Acurácia, matriz de confusão e validação: saber se o modelo funciona de fato."
+  },
+  {
+   "id": "IA9",
+   "nome": "Redes neurais (MLP)",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA6",
+   "x": 1104.9,
+   "y": 295.5
+  },
+  {
+   "id": "IA10",
+   "nome": "CNN e visão",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA9",
+   "x": 1161.7,
+   "y": 265.5
+  },
+  {
+   "id": "IA11",
+   "nome": "PyTorch / TensorFlow",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA9",
+   "x": 1131.7,
+   "y": 253.3
+  },
+  {
+   "id": "IA12",
+   "nome": "NLP",
+   "raiz": "IA",
+   "nivel": 3,
+   "pai": "IA9",
+   "x": 1100.7,
+   "y": 242.6
+  },
+  {
+   "id": "IA13",
+   "nome": "LLMs e prompts",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA12",
+   "x": 1123.9,
+   "y": 199.1
+  },
+  {
+   "id": "IA14",
+   "nome": "APIs de LLM",
+   "raiz": "IA",
+   "nivel": 2,
+   "pai": "IA13",
+   "x": 1147.0,
+   "y": 155.6
+  },
+  {
+   "id": "IA15",
+   "nome": "RAG",
+   "raiz": "IA",
+   "nivel": 3,
+   "pai": "IA14",
+   "x": 1170.2,
+   "y": 112.1
+  },
+  {
+   "id": "IA16",
+   "nome": "Extração de características",
+   "raiz": "IA",
+   "nivel": 3,
+   "pai": "IA6",
+   "x": 1049.4,
+   "y": 278.0
+  },
+  {
+   "id": "IA17",
+   "nome": "MLOps",
+   "raiz": "IA",
+   "nivel": 3,
+   "pai": "IA11",
+   "x": 1158.4,
+   "y": 211.0
+  },
+  {
+   "id": "MO1",
+   "nome": "Design mobile",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO",
+   "x": 792.1,
+   "y": 813.2
+  },
+  {
+   "id": "MO2",
+   "nome": "Flutter (Dart)",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO1",
+   "x": 745.5,
+   "y": 848.2
+  },
+  {
+   "id": "MO3",
+   "nome": "React Native",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO1",
+   "x": 772.6,
+   "y": 857.9
+  },
+  {
+   "id": "MO4",
+   "nome": "Android (Kotlin)",
+   "raiz": "MO",
+   "nivel": 3,
+   "pai": "MO1",
+   "x": 791.3,
+   "y": 863.3
+  },
+  {
+   "id": "MO5",
+   "nome": "Navegação de telas",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO2",
+   "x": 717.4,
+   "y": 889.9
+  },
+  {
+   "id": "MO6",
+   "nome": "Consumo de API",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO5",
+   "x": 677.4,
+   "y": 926.8
+  },
+  {
+   "id": "MO7",
+   "nome": "Armazenamento local",
+   "raiz": "MO",
+   "nivel": 2,
+   "pai": "MO5",
+   "x": 701.5,
+   "y": 936.3
+  },
+  {
+   "id": "MO8",
+   "nome": "Publicar na loja",
+   "raiz": "MO",
+   "nivel": 3,
+   "pai": "MO7",
+   "x": 675.0,
+   "y": 978.7
+  },
+  {
+   "id": "MO9",
+   "nome": "Notificações push",
+   "raiz": "MO",
+   "nivel": 3,
+   "pai": "MO6",
+   "x": 647.7,
+   "y": 967.9
+  },
+  {
+   "id": "BO1",
+   "nome": "Scripts de automação",
+   "raiz": "BO",
+   "nivel": 1,
+   "pai": "BO",
+   "x": 872.8,
+   "y": 401.7,
+   "por_que": "Resolve tarefas reais cedo e motiva; ponto de partida para bots."
+  },
+  {
+   "id": "BO2",
+   "nome": "Web scraping",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO1",
+   "x": 931.1,
+   "y": 354.5
+  },
+  {
+   "id": "BO3",
+   "nome": "Regex",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO1",
+   "x": 909.5,
+   "y": 353.6
+  },
+  {
+   "id": "BO4",
+   "nome": "Planilhas (Excel)",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO1",
+   "x": 887.9,
+   "y": 353.7
+  },
+  {
+   "id": "BO5",
+   "nome": "Agendamento (cron)",
+   "raiz": "BO",
+   "nivel": 3,
+   "pai": "BO1",
+   "x": 866.4,
+   "y": 354.9
+  },
+  {
+   "id": "BO6",
+   "nome": "Bots de Discord",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO1",
+   "x": 845.0,
+   "y": 357.2
+  },
+  {
+   "id": "BO7",
+   "nome": "Bots de WhatsApp",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO6",
+   "x": 834.8,
+   "y": 310.9
+  },
+  {
+   "id": "BO8",
+   "nome": "APIs de mensageria",
+   "raiz": "BO",
+   "nivel": 3,
+   "pai": "BO7",
+   "x": 824.6,
+   "y": 264.5
+  },
+  {
+   "id": "BO9",
+   "nome": "Streamlit",
+   "raiz": "BO",
+   "nivel": 2,
+   "pai": "BO1",
+   "x": 823.9,
+   "y": 360.5
+  },
+  {
+   "id": "BO10",
+   "nome": "Interfaces Tkinter",
+   "raiz": "BO",
+   "nivel": 3,
+   "pai": "BO1",
+   "x": 803.0,
+   "y": 364.8
+  },
+  {
+   "id": "JG1",
+   "nome": "Game loop",
+   "raiz": "JG",
+   "nivel": 1,
+   "pai": "JG",
+   "x": 757.6,
+   "y": 431.4,
+   "por_que": "O coração de todo jogo: ler entrada, atualizar o estado, desenhar."
+  },
+  {
+   "id": "JG2",
+   "nome": "Pygame",
+   "raiz": "JG",
+   "nivel": 2,
+   "pai": "JG1",
+   "x": 758.8,
+   "y": 377.8
+  },
+  {
+   "id": "JG3",
+   "nome": "Sprites e colisão",
+   "raiz": "JG",
+   "nivel": 2,
+   "pai": "JG2",
+   "x": 733.1,
+   "y": 335.1
+  },
+  {
+   "id": "JG4",
+   "nome": "Física 2D",
+   "raiz": "JG",
+   "nivel": 3,
+   "pai": "JG3",
+   "x": 720.6,
+   "y": 288.0
+  },
+  {
+   "id": "JG5",
+   "nome": "Godot",
+   "raiz": "JG",
+   "nivel": 2,
+   "pai": "JG1",
+   "x": 730.6,
+   "y": 389.1
+  },
+  {
+   "id": "JG6",
+   "nome": "Unity (C#)",
+   "raiz": "JG",
+   "nivel": 3,
+   "pai": "JG1",
+   "x": 712.6,
+   "y": 397.7
+  },
+  {
+   "id": "JG7",
+   "nome": "IA de NPCs",
+   "raiz": "JG",
+   "nivel": 3,
+   "pai": "JG4",
+   "x": 696.7,
+   "y": 244.7
+  },
+  {
+   "id": "JG8",
+   "nome": "Mods de Minecraft",
+   "raiz": "JG",
+   "nivel": 2,
+   "pai": "JG1",
+   "x": 695.3,
+   "y": 407.2
+  },
+  {
+   "id": "JG9",
+   "nome": "Game design",
+   "raiz": "JG",
+   "nivel": 2,
+   "pai": "JG",
+   "x": 718.9,
+   "y": 453.1
+  },
+  {
+   "id": "JG10",
+   "nome": "Áudio e efeitos",
+   "raiz": "JG",
+   "nivel": 3,
+   "pai": "JG3",
+   "x": 694.5,
+   "y": 297.3
+  },
+  {
+   "id": "EM1",
+   "nome": "Eletrônica básica",
+   "raiz": "EM",
+   "nivel": 1,
+   "pai": "EM",
+   "x": 1122.4,
+   "y": 483.3,
+   "por_que": "Tensão, corrente e circuitos: fundamento de Arduino, ESP32 e TinyML."
+  },
+  {
+   "id": "EM2",
+   "nome": "Arduino",
+   "raiz": "EM",
+   "nivel": 2,
+   "pai": "EM1",
+   "x": 1187.8,
+   "y": 473.0
+  },
+  {
+   "id": "EM3",
+   "nome": "C/C++",
+   "raiz": "EM",
+   "nivel": 2,
+   "pai": "EM2",
+   "x": 1253.2,
+   "y": 465.5
+  },
+  {
+   "id": "EM4",
+   "nome": "Sensores e atuadores",
+   "raiz": "EM",
+   "nivel": 2,
+   "pai": "EM2",
+   "x": 1223.4,
+   "y": 430.1
+  },
+  {
+   "id": "EM5",
+   "nome": "ESP32",
+   "raiz": "EM",
+   "nivel": 2,
+   "pai": "EM4",
+   "x": 1284.5,
+   "y": 415.1
+  },
+  {
+   "id": "EM6",
+   "nome": "MQTT",
+   "raiz": "EM",
+   "nivel": 3,
+   "pai": "EM5",
+   "x": 1343.8,
+   "y": 398.9
+  },
+  {
+   "id": "EM7",
+   "nome": "TinyML",
+   "raiz": "EM",
+   "nivel": 3,
+   "pai": "EM5",
+   "x": 1325.8,
+   "y": 378.6
+  },
+  {
+   "id": "EM8",
+   "nome": "I2C e SPI",
+   "raiz": "EM",
+   "nivel": 3,
+   "pai": "EM4",
+   "x": 1259.2,
+   "y": 389.1
+  },
+  {
+   "id": "EM9",
+   "nome": "Raspberry Pi",
+   "raiz": "EM",
+   "nivel": 2,
+   "pai": "EM1",
+   "x": 1151.2,
+   "y": 436.9
+  },
+  {
+   "id": "ES1",
+   "nome": "Código limpo",
+   "raiz": "ES",
+   "nivel": 1,
+   "pai": "ES",
+   "x": 685.6,
+   "y": 479.4,
+   "por_que": "Escrever para humanos lerem; facilita equipe e manutenção."
+  },
+  {
+   "id": "ES2",
+   "nome": "Padrões de projeto",
+   "raiz": "ES",
+   "nivel": 3,
+   "pai": "ES1",
+   "x": 652.5,
+   "y": 437.2
+  },
+  {
+   "id": "ES3",
+   "nome": "Princípios SOLID",
+   "raiz": "ES",
+   "nivel": 3,
+   "pai": "ES1",
+   "x": 638.3,
+   "y": 449.7
+  },
+  {
+   "id": "ES4",
+   "nome": "Metodologias ágeis",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES",
+   "x": 660.4,
+   "y": 507.4
+  },
+  {
+   "id": "ES5",
+   "nome": "Code review",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES1",
+   "x": 625.2,
+   "y": 462.9
+  },
+  {
+   "id": "ES6",
+   "nome": "Documentação técnica",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES",
+   "x": 644.6,
+   "y": 531.8
+  },
+  {
+   "id": "ES7",
+   "nome": "UML e diagramas",
+   "raiz": "ES",
+   "nivel": 3,
+   "pai": "ES6",
+   "x": 592.7,
+   "y": 505.9
+  },
+  {
+   "id": "ES8",
+   "nome": "Gestão de projetos",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES4",
+   "x": 613.2,
+   "y": 476.7
+  },
+  {
+   "id": "ES9",
+   "nome": "Pensamento de produto",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES4",
+   "x": 602.3,
+   "y": 491.0
+  },
+  {
+   "id": "ES10",
+   "nome": "Portfólio e GitHub",
+   "raiz": "ES",
+   "nivel": 2,
+   "pai": "ES6",
+   "x": 584.2,
+   "y": 521.2
+  }
+ ],
+ "pontes": [
+  {
+   "de": "FE3",
+   "para": "FU5"
+  },
+  {
+   "de": "FE8",
+   "para": "BE2"
+  },
+  {
+   "de": "FE1",
+   "para": "BE1"
+  },
+  {
+   "de": "FE18",
+   "para": "MO1"
+  },
+  {
+   "de": "FE10",
+   "para": "MO3"
+  },
+  {
+   "de": "FE9",
+   "para": "BE5"
+  },
+  {
+   "de": "FE3",
+   "para": "BE5"
+  },
+  {
+   "de": "BE3",
+   "para": "FU10"
+  },
+  {
+   "de": "BE10",
+   "para": "DB2"
+  },
+  {
+   "de": "BE10",
+   "para": "DB7"
+  },
+  {
+   "de": "BE14",
+   "para": "DB9"
+  },
+  {
+   "de": "BE7",
+   "para": "SE2"
+  },
+  {
+   "de": "BE8",
+   "para": "SE3"
+  },
+  {
+   "de": "BE1",
+   "para": "DO3"
+  },
+  {
+   "de": "BE16",
+   "para": "DO11"
+  },
+  {
+   "de": "BE18",
+   "para": "BO8"
+  },
+  {
+   "de": "BO4",
+   "para": "DB1"
+  },
+  {
+   "de": "DB6",
+   "para": "MO7"
+  },
+  {
+   "de": "DB10",
+   "para": "DO6"
+  },
+  {
+   "de": "DB13",
+   "para": "IA15"
+  },
+  {
+   "de": "DO7",
+   "para": "FU16"
+  },
+  {
+   "de": "DO1",
+   "para": "FU15"
+  },
+  {
+   "de": "DO16",
+   "para": "SE8"
+  },
+  {
+   "de": "DO15",
+   "para": "SE4"
+  },
+  {
+   "de": "DO6",
+   "para": "FU19"
+  },
+  {
+   "de": "SE6",
+   "para": "DB1"
+  },
+  {
+   "de": "SE7",
+   "para": "FE4"
+  },
+  {
+   "de": "SE4",
+   "para": "BE1"
+  },
+  {
+   "de": "IA1",
+   "para": "FU6"
+  },
+  {
+   "de": "IA2",
+   "para": "BO4"
+  },
+  {
+   "de": "IA14",
+   "para": "BE2"
+  },
+  {
+   "de": "IA14",
+   "para": "BO7"
+  },
+  {
+   "de": "IA17",
+   "para": "DO4"
+  },
+  {
+   "de": "IA9",
+   "para": "EM7"
+  },
+  {
+   "de": "IA8",
+   "para": "EM7"
+  },
+  {
+   "de": "BO9",
+   "para": "IA14"
+  },
+  {
+   "de": "MO2",
+   "para": "FU10"
+  },
+  {
+   "de": "MO6",
+   "para": "BE2"
+  },
+  {
+   "de": "MO9",
+   "para": "BE18"
+  },
+  {
+   "de": "JG1",
+   "para": "FU4"
+  },
+  {
+   "de": "JG2",
+   "para": "FU10"
+  },
+  {
+   "de": "JG4",
+   "para": "IA5"
+  },
+  {
+   "de": "JG7",
+   "para": "FU12"
+  },
+  {
+   "de": "JG8",
+   "para": "FU10"
+  },
+  {
+   "de": "JG8",
+   "para": "ES2"
+  },
+  {
+   "de": "JG6",
+   "para": "FU10"
+  },
+  {
+   "de": "EM3",
+   "para": "FU5"
+  },
+  {
+   "de": "EM6",
+   "para": "BE12"
+  },
+  {
+   "de": "EM5",
+   "para": "DO3"
+  },
+  {
+   "de": "EM9",
+   "para": "DO1"
+  },
+  {
+   "de": "ES1",
+   "para": "FU5"
+  },
+  {
+   "de": "ES2",
+   "para": "FU10"
+  },
+  {
+   "de": "ES5",
+   "para": "FU16"
+  },
+  {
+   "de": "ES6",
+   "para": "FU18"
+  },
+  {
+   "de": "ES9",
+   "para": "FE18"
+  },
+  {
+   "de": "ES10",
+   "para": "FU16"
+  },
+  {
+   "de": "BO2",
+   "para": "FE4"
+  },
+  {
+   "de": "BO3",
+   "para": "FU7"
+  },
+  {
+   "de": "BO5",
+   "para": "DO2"
+  },
+  {
+   "de": "BO6",
+   "para": "BE12"
+  },
+  {
+   "de": "BO10",
+   "para": "FU10"
+  },
+  {
+   "de": "FU19",
+   "para": "FE16"
+  },
+  {
+   "de": "FE17",
+   "para": "BE14"
+  },
+  {
+   "de": "IA7",
+   "para": "IA4"
+  },
+  {
+   "de": "IA10",
+   "para": "IA5"
+  },
+  {
+   "de": "IA16",
+   "para": "IA10"
+  },
+  {
+   "de": "BO7",
+   "para": "BE2"
+  },
+  {
+   "de": "FU8",
+   "para": "DB6"
+  },
+  {
+   "de": "FU9",
+   "para": "BE11"
+  },
+  {
+   "de": "FE11",
+   "para": "FU12"
+  },
+  {
+   "de": "BE15",
+   "para": "ES3"
+  },
+  {
+   "de": "DO13",
+   "para": "BE15"
+  },
+  {
+   "de": "JG9",
+   "para": "ES4"
+  },
+  {
+   "de": "DB5",
+   "para": "BE15"
+  }
+ ]
+}

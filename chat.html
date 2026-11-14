@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Chat</title>
+<meta name="description" content="Converse com o Lunox: diga o que quer construir e ele monta a trilha do seu projeto.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="conta.css">
+</head>
+<body>
+
+<header id="topbar"></header>
+
+<main class="page">
+
+  <section class="trail-hero" style="margin-bottom:18px">
+    <div>
+      <div class="kicker">Converse com o Lunox</div>
+      <h1>Diga o que você quer construir.</h1>
+      <p class="lead">O gatinho pergunta o que você já sabe e monta a trilha do seu projeto — com aulas, código e validação.</p>
+    </div>
+    <div class="trail-actions">
+      <span class="badge-demo" id="modo-badge">modo roteiro</span>
+      <a class="btn ghost" href="index.html">Ver minha trilha</a>
+    </div>
+  </section>
+
+  <div class="chat-layout">
+    <section class="chat-box">
+      <div class="chat-head">
+        <img class="chat-avatar" id="chat-gato" src="lunox3.png" alt="Lunox">
+        <div>
+          <div class="who">Lunox</div>
+          <div class="st"><span class="dot"></span><span id="chat-status">online · respostas instantâneas</span></div>
+        </div>
+        <span class="mode" id="chat-mode">roteiro</span>
+      </div>
+
+      <div class="chat-log" id="chat-log" aria-live="polite"></div>
+
+      <div class="chat-compose">
+        <div class="sugestoes" id="sugestoes"></div>
+        <form class="chat-input-row" id="form">
+          <input class="chat-input" id="input" placeholder="Ex.: quero fazer um bot de Discord" autocomplete="off" maxlength="500" aria-label="Mensagem para o Lunox">
+          <button class="chat-send" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="aside">
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Como o Lunox monta</span>
+        </div>
+        <div class="lembra">
+          <div><b>1.</b> Você conta o projeto</div>
+          <div><b>2.</b> Ele checa o que você já sabe</div>
+          <div><b>3.</b> Monta a trilha e acende as estrelas</div>
+        </div>
+        <label class="switch" style="margin-top:14px">
+          <input type="checkbox" id="modo-ia">
+          <span><b>Usar IA de verdade</b><br><span class="tiny">Groq + NVIDIA pela rota em cascata</span></span>
+        </label>
+        <p class="tiny" style="margin:10px 0 0">No modo roteiro a resposta é instantânea. A IA real entra quando você quiser testar o roteador.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Suas trilhas</span>
+        </div>
+        <div class="mini-trails" id="mini-trilhas"></div>
+        <a class="btn small" href="index.html" style="width:100%;margin-top:9px;justify-content:center">Ver trilha atual</a>
+      </div>
+
+      <div class="panel pet-mini">
+        <div class="panel-head" style="justify-content:center;margin-bottom:6px">
+          <span class="panel-title">Seu Lunox</span>
+        </div>
+        <img id="gato" src="lunox3.png" alt="Lunox">
+        <div class="cap" id="gato-cap"></div>
+        <div class="row" style="justify-content:center;margin-top:9px">
+          <span class="chip gold"><span class="dot"></span><span id="estrelas-count">0</span> estrelas acesas</span>
+        </div>
+        <a class="link" href="habilidades.html" style="display:inline-block;margin-top:9px">ver o mapa →</a>
+      </div>
+
+    </aside>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
+  <p>Demo do esboço · novembro de 2026</p>
+  <div class="links">
+    <a href="index.html">Trilha</a>
+    <a href="habilidades.html">Mapa das estrelas</a>
+    <a href="programar.html">Programar</a>
+    <a href="pitch.html">Apresentação do produto</a>
+  </div>
+</footer>
+
+<script src="app-core.js"></script>
+<script src="chat.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

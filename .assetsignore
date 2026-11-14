@@ -1,0 +1,19 @@
+# Arquivos que NÃO devem ser publicados como site estático.
+_backup/
+docs/
+ferramentas/
+worker/
+node_modules/
+.wrangler/
+.git/
+.github/
+wrangler.jsonc
+.assetsignore
+.gitignore
+.dev.vars
+.dev.vars.example
+README.md
+*.log
+backups/
+*.zip
+*.exe

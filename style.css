@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #1a0b2e; /* Roxo escuro do PDF */
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fundo estrelado */
+.background-stars {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh;
+    gap: 20px;
+}
+
+/* --- CHAT SECTION --- */
+.chat-section {
+    flex: 1;
+    background: rgba(30, 15, 60, 0.85);
+    border: 1px solid #4a2c7c;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+header h1 { color: #ffd700; }
+header p { font-size: 0.9rem; color: #b3a1d9; margin-bottom: 15px; }
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+/* Scrollbar customizada */
+.chat-box::-webkit-scrollbar { width: 8px; }
+.chat-box::-webkit-scrollbar-thumb { background: #5a3b9e; border-radius: 10px; }
+
+.message {
+    padding: 12px 15px;
+    border-radius: 15px;
+    max-width: 85%;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.lunox-message {
+    background: #3a206b;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+    border: 1px solid #5a3b9e;
+}
+
+.user-message {
+    background: #ffd700;
+    color: #1a0b2e;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+    font-weight: 700;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #5a3b9e;
+    background: #1a0b2e;
+    color: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+.input-area input:focus { border-color: #ffd700; }
+
+.input-area button {
+    padding: 12px 20px;
+    background: #ffd700;
+    color: #1a0b2e;
+    border: none;
+    border-radius: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.input-area button:hover { background: #ffea70; transform: scale(1.05); }
+
+/* --- VISUAL SECTION --- */
+.visual-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-tree, .pet-container {
+    background: rgba(30, 15, 60, 0.85);
+    border: 1px solid #4a2c7c;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: 0.5s ease;
+}
+
+.skill-tree { flex: 2; display: flex; flex-direction: column; }
+.pet-container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;}
+
+.skill-tree h2, .pet-container h2 { color: #ffd700; margin-bottom: 15px; font-size: 1.2rem; }
+
+.stars-container {
+    flex: 1;
+    position: relative;
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><line x1="50%" y1="50%" x2="20%" y2="30%" stroke="%235a3b9e" stroke-width="2" stroke-dasharray="5,5"/><line x1="50%" y1="50%" x2="80%" y2="20%" stroke="%235a3b9e" stroke-width="2" stroke-dasharray="5,5"/><line x1="50%" y1="50%" x2="30%" y2="80%" stroke="%235a3b9e" stroke-width="2" stroke-dasharray="5,5"/><line x1="50%" y1="50%" x2="80%" y2="70%" stroke="%235a3b9e" stroke-width="2" stroke-dasharray="5,5"/></svg>') no-repeat center;
+}
+
+.star {
+    position: absolute;
+    width: 45px; height: 45px;
+    background: #2a1a4a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #5a3b9e;
+    border: 2px solid #5a3b9e;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.star.active {
+    background: #ffd700;
+    color: #1a0b2e;
+    border-color: #ffea70;
+    box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+    transform: scale(1.3);
+}
+
+/* Posições das estrelas */
+#star-var { top: 20%; left: 10%; }
+#star-cond { top: 70%; left: 20%; }
+#star-loop { top: 30%; left: 80%; }
+#star-func { top: 80%; left: 70%; }
+
+/* Imagem do Gatinho */
+#lunox-pet {
+    width: 180px;
+    height: auto;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: drop-shadow(0 0 15px rgba(90, 59, 158, 0.5));
+}
+
+#pet-status { 
+    font-size: 0.9rem; 
+    color: #b3a1d9; 
+    margin-top: 10px; 
+    font-weight: 700; 
+    transition: color 0.5s ease;
+}
+
+/* Efeito de evolução no gatinho */
+.visual-section.evolved .pet-container {
+    border-color: #ffd700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.visual-section.evolved #lunox-pet {
+    filter: drop-shadow(0 0 20px #ffd700);
+    transform: scale(1.05);
+}

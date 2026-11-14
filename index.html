@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Sua trilha</title>
+<meta name="description" content="A trilha do seu projeto, com aulas, programação e validação. O Lunox lembra o que você já sabe.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="conta.css">
+</head>
+<body>
+
+<header id="topbar"></header>
+
+<main class="page">
+
+  <section class="trail-hero">
+    <div>
+      <div class="kicker">Sua trilha atual</div>
+      <h1 id="titulo">Sua trilha</h1>
+      <p class="lead" id="sub">Carregando…</p>
+      <div class="trail-meta" id="meta"></div>
+    </div>
+    <div class="trail-actions">
+      <a class="btn ghost" href="chat.html">Falar com o Lunox</a>
+      <button class="btn primary" id="btn-concluir" type="button">Concluir projeto</button>
+    </div>
+  </section>
+
+  <div class="app-grid">
+    <aside class="aside">
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Minhas trilhas <span class="count" id="conta-trilhas"></span></span>
+        </div>
+        <div class="trail-list" id="lista-trilhas"></div>
+        <a class="btn novo-btn" id="btn-nova" href="sua-trilha.html?nova=1">+ Nova trilha</a>
+      </div>
+
+      <div class="panel pet-mini">
+        <div class="panel-head" style="justify-content:center;margin-bottom:6px">
+          <span class="panel-title">Seu Lunox</span>
+        </div>
+        <img id="gato" src="lunox1.png" alt="Lunox">
+        <div class="cap" id="gato-cap"></div>
+        <div class="row" style="justify-content:center;margin-top:9px">
+          <span class="chip gold"><span class="dot"></span><span id="estrelas-count">0</span> estrelas acesas</span>
+        </div>
+        <a class="link" href="habilidades.html" style="display:inline-block;margin-top:9px">ver o mapa →</a>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title" style="margin-bottom:9px">Como funciona</div>
+        <div class="lembra">
+          <div><b>1.</b> Você diz o que quer construir</div>
+          <div><b>2.</b> O Lunox monta a trilha</div>
+          <div><b>3.</b> Cada aula: conceito, código e IA</div>
+        </div>
+        <p class="tiny" style="margin:10px 0 0">O que você já sabe entra como estrela acesa — e sai da trilha.</p>
+      </div>
+
+    </aside>
+
+    <section>
+      <div class="progress-line">
+        <span><b id="feitas">0</b> de <span id="total">0</span> aulas concluídas</span>
+        <div class="progress"><i id="barra"></i></div>
+        <span id="pct">0%</span>
+      </div>
+
+      <div id="aulas"></div>
+      <p class="tiny" style="margin-top:14px">Cada aula tem 3 passos: o conceito, o código do seu projeto e o uso da IA. A estrela só acende depois do teste de refino.</p>
+    </section>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
+  <p>Demo do esboço · novembro de 2026</p>
+  <div class="links">
+    <a href="chat.html">Chat com o Lunox</a>
+    <a href="habilidades.html">Mapa das estrelas</a>
+    <a href="programar.html">Programar</a>
+    <a href="pitch.html">Apresentação do produto</a>
+  </div>
+</footer>
+
+<script src="app-core.js"></script>
+<script src="trilha.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

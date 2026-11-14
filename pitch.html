@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Aprenda programando o que você quer construir</title>
+<meta name="description" content="O Lunox transforma o seu objetivo (um bot, um site, um jogo) em uma trilha de aprendizado sob medida. Você aprende os fundamentos de verdade, já dentro do seu projeto.">
+<link rel="stylesheet" href="demo.css">
+<link rel="stylesheet" href="conta.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= topo ================= -->
+  <nav class="nav">
+    <div class="brand"><span class="moon">🌙</span> Lunox</div>
+    <div class="links">
+      <a href="#como">Como funciona</a>
+      <a href="#demo">Trilha</a>
+      <a href="#constelacao">Estrelas</a>
+      <a href="#gato">Gatinho</a>
+    </div>
+    <a class="cta" href="#demo">Criar minha trilha</a>
+  </nav>
+
+  <!-- ================= hero ================= -->
+  <header class="hero">
+    <div>
+      <div class="badge"><i></i> MVP · trilhas geradas por IA</div>
+      <h1>Aprenda programando <em>o que você quer construir</em>.</h1>
+      <p>Um app que transforma o seu objetivo em uma trilha sob medida. Você aprende os fundamentos de verdade, mas já dentro do seu projeto: cada aula constrói o que você quer. O Lunox lembra o que você já sabe.</p>
+      <div class="btns">
+        <a class="btn primary" href="#demo">Criar minha trilha</a>
+        <a class="btn ghost" href="#como">Ver como funciona</a>
+      </div>
+      <div class="mini">Sem código pronto. Você escreve, usa IA e prova que entendeu.</div>
+    </div>
+
+    <div class="sky">
+      <div class="orbit"></div>
+      <div class="pet"><img src="lunox1.png" alt="Lunox, o gatinho cósmico" id="hero-gato"></div>
+      <span class="star on" style="top:6%;left:38%">⭐</span>
+      <span class="star on" style="top:26%;left:76%">🌟</span>
+      <span class="star on" style="top:64%;left:10%">✨</span>
+      <span class="star" style="top:82%;left:62%">💫</span>
+      <span class="star" style="top:44%;left:88%">🪐</span>
+    </div>
+  </header>
+
+  <!-- ================= como funciona ================= -->
+  <section id="como">
+    <div class="sec-head">
+      <div class="kicker">Como funciona</div>
+      <h2>Três passos até a primeira estrela</h2>
+      <p>Nada de curso genérico. O fundamento entra na hora em que o seu projeto pede.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Você diz o que quer construir</h3>
+        <p>Um bot de Discord, um CRUD de alunos, um portfólio. Em uma frase.</p>
+        <div class="steps3"><span>Quero criar um bot de Discord</span></div>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>O Lunox monta a trilha</h3>
+        <p>No máximo 3 aulas, focadas apenas no que o seu projeto exige.</p>
+        <div class="steps3"><span>Aula</span><span>Programação</span><span>Programação com IA</span></div>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Teste de refino</h3>
+        <p>Antes de a estrela acender, você explica o trecho, encontra um bug ou altera algo.</p>
+        <div class="steps3"><span>Entender, e não só copiar</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">🛡️</div>
+      <p><b>Usar IA está certo</b>, desde que você saiba o que está fazendo. Por isso cada aula termina com você revisando e corrigindo o que a IA gerou.</p>
+    </div>
+  </section>
+
+  <!-- ================= demo da trilha ================= -->
+  <section id="demo">
+    <div class="sec-head">
+      <div class="kicker">Experimente agora</div>
+      <h2>Diga o que quer construir</h2>
+      <p>Esta é a mesma lógica do app: o projeto entra, a trilha sai — e o que você já sabe é pulado.</p>
+    </div>
+
+    <div class="demo">
+      <form class="demo-top" id="demo-form">
+        <input id="demo-input" type="text" placeholder="Ex: quero fazer um bot de Discord" autocomplete="off">
+        <button class="btn primary" type="submit">Montar trilha</button>
+      </form>
+
+      <div class="chips">
+        <button class="chip" data-trilha="bot-discord" type="button">🤖 Bot de Discord</button>
+        <button class="chip" data-trilha="crud-alunos" type="button">🗄️ CRUD de alunos</button>
+        <button class="chip" data-trilha="portfolio-web" type="button">🪐 Portfólio web</button>
+        <button class="chip" data-trilha="jogo" type="button">🎮 Jogo 2D</button>
+      </div>
+
+      <div class="demo-body">
+        <div>
+          <div style="font-size:12px;color:var(--dim);margin-bottom:10px;font-family:var(--mono)">
+            SUA TRILHA · <span id="trail-nome" style="color:var(--gold)">Bot de Discord</span>
+          </div>
+          <div class="trail" id="trail"></div>
+
+          <div class="demo-actions">
+            <button class="btn primary" id="btn-concluir" type="button">Concluir projeto → acender estrelas</button>
+            <button class="btn ghost" id="btn-teste" type="button">Fazer teste rápido</button>
+          </div>
+          <div class="hint">Clique em concluir para ver o gatinho evoluir e as estrelas acenderem de verdade nesta demo.</div>
+        </div>
+
+        <aside class="side">
+          <div class="mini-card">
+            <div class="lbl">Estrelas desta trilha</div>
+            <div id="skills-preview">
+              <div class="skill-mini" data-skill="variaveis"><span class="s">⭐</span> Variáveis <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="condicoes"><span class="s">🌟</span> Condições <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="lacos"><span class="s">✨</span> Laços <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="funcoes"><span class="s">💫</span> Funções <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="listas"><span class="s">🔆</span> Listas <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="interfaces"><span class="s">🪐</span> Interfaces <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="apis"><span class="s">🛰️</span> APIs <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="arquivos"><span class="s">📁</span> Arquivos <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="banco"><span class="s">🗄️</span> Banco de dados <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+              <div class="skill-mini" data-skill="git"><span class="s">🌿</span> Git <span class="estado" style="margin-left:auto;font-size:10.5px;color:var(--gold)"></span></div>
+            </div>
+          </div>
+
+          <div class="mini-card pet-mini">
+            <div class="lbl">Seu Lunox</div>
+            <img src="lunox1.png" alt="Lunox evoluindo" id="pet-preview">
+            <div class="cap">evolui a cada projeto concluído</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= comparação ================= -->
+  <section id="comparacao">
+    <div class="sec-head">
+      <div class="kicker">Por que não pedir para uma IA?</div>
+      <h2>Uma IA responde. O Lunox te ensina.</h2>
+    </div>
+
+    <div class="compare">
+      <div class="col ia">
+        <h3>Chat de IA comum</h3>
+        <div class="sub">responde e esquece</div>
+        <ul>
+          <li><span class="m">✕</span> Esquece quem você é</li>
+          <li><span class="m">✕</span> Responde só o que você pergunta</li>
+          <li><span class="m">✕</span> Entrega o código pronto</li>
+          <li><span class="m">✕</span> Exercícios genéricos</li>
+        </ul>
+      </div>
+      <div class="col lunox">
+        <h3>Lunox</h3>
+        <div class="sub">lembra, adapta e cobra entendimento</div>
+        <ul>
+          <li><span class="m">✓</span> Lembra suas habilidades, com prova de cada uma</li>
+          <li><span class="m">✓</span> Decide o que você precisa aprender a seguir</li>
+          <li><span class="m">✓</span> Faz você escrever, usar IA e provar que entendeu</li>
+          <li><span class="m">✓</span> Exercícios que são pedaços do seu projeto</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= constelação ================= -->
+  <section id="constelacao">
+    <div class="sec-head">
+      <div class="kicker">Sua árvore de habilidades</div>
+      <h2>Cada projeto acende novas estrelas</h2>
+      <p>Clique para acender o que você já sabe. O Lunox encurta a próxima trilha a partir daí — e a pilha do que falta diminuir.</p>
+    </div>
+
+    <div class="constel">
+      <button class="star-btn" data-skill="variaveis"><span class="s">⭐</span> Variáveis</button>
+      <button class="star-btn" data-skill="condicoes"><span class="s">🌟</span> Condições</button>
+      <button class="star-btn" data-skill="lacos"><span class="s">✨</span> Laços</button>
+      <button class="star-btn" data-skill="funcoes"><span class="s">💫</span> Funções</button>
+      <button class="star-btn" data-skill="listas"><span class="s">🔆</span> Listas</button>
+      <button class="star-btn" data-skill="interfaces"><span class="s">🪐</span> Interfaces</button>
+      <button class="star-btn" data-skill="apis"><span class="s">🛰️</span> APIs</button>
+      <button class="star-btn" data-skill="arquivos"><span class="s">📁</span> Arquivos</button>
+      <button class="star-btn" data-skill="banco"><span class="s">🗄️</span> Banco de dados</button>
+      <button class="star-btn" data-skill="git"><span class="s">🌿</span> Git</button>
+    </div>
+
+    <div class="constel-bar">
+      <span><b id="constel-count">0 de 10</b> estrelas acesas</span>
+      <div class="progress"><i id="progress-bar"></i></div>
+      <button class="btn ghost" id="btn-teste-constel" style="padding:7px 14px;font-size:12.5px">Fazer teste rápido</button>
+    </div>
+
+    <div id="teste-box" style="display:none;margin-top:16px;padding:16px;border-radius:14px;border:1px solid rgba(255,215,0,.28);background:rgba(255,215,0,.06);max-width:520px"></div>
+  </section>
+
+  <!-- ================= gato ================= -->
+  <section id="gato">
+    <div class="sec-head">
+      <div class="kicker">Seu gatinho evolui com você</div>
+      <h2>Cada habilidade vira um item</h2>
+      <p>O progresso fica visível, e o seu gato conta o seu caminho — do gatinho simples ao Lunox completo.</p>
+    </div>
+
+    <div class="pet-grid">
+      <div class="pet-card">
+        <img src="lunox1.png" alt="Lunox nível 1">
+        <div class="nm">Lunox aprendiz</div>
+        <div class="lv">começo da constelação</div>
+        <div class="items">
+          <span data-item="variaveis">Coleira estrelada</span>
+          <span data-item="condicoes">Óculos de decisão</span>
+        </div>
+      </div>
+      <div class="pet-card">
+        <img src="lunox2.png" alt="Lunox nível 2">
+        <div class="nm">Lunox explorador</div>
+        <div class="lv">4+ estrelas acesas</div>
+        <div class="items">
+          <span data-item="lacos">Rastro de cometa</span>
+          <span data-item="funcoes">Capa de mago</span>
+        </div>
+      </div>
+      <div class="pet-card">
+        <img src="lunox3.png" alt="Lunox nível 3">
+        <div class="nm">Lunox completo</div>
+        <div class="lv">7+ estrelas acesas</div>
+        <div class="items">
+          <span data-item="listas">Mochila de itens</span>
+          <span data-item="git">Crachá de commit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= chat demo ================= -->
+  <section id="chat">
+    <div class="sec-head">
+      <div class="kicker">O mentor</div>
+      <h2>Conversa que adapta a trilha</h2>
+      <p>No modo instantâneo a resposta é roteirizada, para a demo nunca travar. Ligue a IA real para ver a cascata de modelos decidindo em tempo real.</p>
+    </div>
+
+    <div class="chat-demo">
+      <div class="chat-box">
+        <div class="chat-head">
+          <span class="dot"></span> Lunox
+          <span class="mode" id="chat-mode">respostas instantâneas</span>
+        </div>
+        <div class="chat-log" id="chat-log">
+          <div class="msg lunox">Miau! 🌙 Eu sou o Lunox. O que você quer construir hoje? (ex: um bot de Discord, um CRUD em Java…)</div>
+        </div>
+        <form class="chat-in" id="chat-form">
+          <input id="chat-input" type="text" placeholder="Diga o que quer construir…" autocomplete="off">
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+
+      <aside class="side">
+        <div class="mini-card">
+          <div class="lbl">Modo de resposta</div>
+          <label class="switch">
+            <input type="checkbox" id="toggle-ia">
+            <span>usar IA real</span>
+          </label>
+          <div class="hint" style="margin-top:10px">A IA real passa pelo roteador: regras → Groq → NVIDIA. Pode levar alguns segundos nas trilhas.</div>
+        </div>
+        <div class="mini-card">
+          <div class="lbl">O que ele lembra</div>
+          <div style="font-size:12.5px;color:var(--dim);line-height:1.7">
+            · seu projeto atual<br>
+            · o nível que você declarou<br>
+            · as estrelas já acesas<br>
+            · em que aula você parou
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= roadmap ================= -->
+  <section id="roadmap">
+    <div class="sec-head">
+      <div class="kicker">Do MVP aos professores</div>
+      <h2>O caminho do produto</h2>
+    </div>
+    <div class="road">
+      <div class="card">
+        <div class="ph">A cada projeto</div>
+        <h3>Manual de publicação no Git</h3>
+        <p>Ao concluir cada projeto grande, o app entrega um manual para publicar. Você termina com algo para mostrar.</p>
+      </div>
+      <div class="card">
+        <div class="ph">Fase 1 · MVP</div>
+        <h3>Trilhas geradas por IA</h3>
+        <p>O jeito mais rápido e barato de testar a ideia com alunos de verdade.</p>
+      </div>
+      <div class="card">
+        <div class="ph">Fase 2</div>
+        <h3>Trilhas com professores</h3>
+        <p>O app cresce com conteúdo de especialistas, mantendo a adaptação por aluno.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
+    <p>Demo do esboço · novembro de 2026</p>
+    <a href="#demo">Criar minha trilha →</a>
+  </footer>
+
+</div>
+
+<script src="demo.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

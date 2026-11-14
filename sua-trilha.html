@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Sua trilha</title>
+<meta name="description" content="A jornada do seu projeto: as estrelas que você precisa acender, na ordem certa, cada uma com a sua aula.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="sua-trilha.css">
+<link rel="stylesheet" href="conta.css">
+</head>
+<body>
+
+<header id="topbar"></header>
+
+<main class="page">
+
+  <section class="trail-hero" style="margin-bottom:18px">
+    <div>
+      <div class="kicker">Sua trilha</div>
+      <h1 id="jor-titulo">O que você quer construir?</h1>
+      <p class="lead" id="jor-resumo">Conte o projeto e o Lunox escolhe, no mapa, só as estrelas que ele precisa, na ordem em que fazem sentido.</p>
+    </div>
+    <div class="trail-actions" id="jor-acoes"></div>
+  </section>
+
+  <section class="panel jor-criar" id="jor-criar" hidden>
+    <div class="panel-head">
+      <span class="panel-title" id="criar-titulo">Monte sua jornada</span>
+    </div>
+
+    <label class="jor-label" for="projeto">Qual é o projeto?</label>
+    <textarea class="jor-texto" id="projeto" rows="3" maxlength="400" placeholder="Ex.: quero fazer um bot de Discord que registra a presença da turma"></textarea>
+
+    <div class="jor-sugs" id="jor-sugs"></div>
+
+    <label class="jor-label" for="detalhes">Algo que o Lunox deva saber? <span class="tiny">(opcional: linguagem, prazo, o que já tentou)</span></label>
+    <input class="jor-linha" id="detalhes" maxlength="200" autocomplete="off" placeholder="Ex.: prefiro Python, tenho 2 meses">
+
+    <div class="jor-label">Seu nível hoje</div>
+    <div class="jor-nivel" id="jor-nivel" role="radiogroup" aria-label="Seu nível"></div>
+
+    <div class="row" style="margin-top:16px;gap:10px;flex-wrap:wrap">
+      <button class="btn primary" type="button" id="btn-montar">Montar minha jornada</button>
+      <button class="btn ghost" type="button" id="btn-cancelar" hidden>Cancelar</button>
+    </div>
+
+    <div class="jor-spin" id="jor-spin" hidden><span class="spin"></span><span id="jor-spin-txt">o Lunox está montando…</span></div>
+    <div class="jor-aviso" id="jor-aviso" hidden></div>
+    <p class="tiny" id="criar-nota" style="margin:12px 0 0" hidden>A jornada atual só é trocada quando a nova ficar pronta.</p>
+  </section>
+
+  <section id="jor-avulsa" hidden></section>
+
+  <section id="jor-lista" hidden>
+    <div class="jor-progresso" id="jor-progresso"></div>
+    <div id="jor-marcos"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
+  <p>Demo do esboço · novembro de 2026</p>
+  <div class="links">
+    <a href="index.html">Trilha</a>
+    <a href="habilidades.html">Mapa das estrelas</a>
+    <a href="programar.html">Programar</a>
+    <a href="pitch.html">Apresentação do produto</a>
+    <a href="admin.html">Admin de aulas</a>
+  </div>
+</footer>
+
+<script src="app-core.js"></script>
+<script src="estrelas-extra.js"></script>
+<script src="estrelas-catalogo.js"></script>
+<script src="aulas-yt.js"></script>
+<script src="estrelas-conteudo.js"></script>
+<script src="aulas-estrelas.js"></script>
+<script src="sua-trilha.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

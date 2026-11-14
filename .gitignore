@@ -1,0 +1,27 @@
+# Dependências e artefatos locais
+node_modules/
+.wrangler/
+_backup/
+backups/
+dist/
+.pages/
+
+# Segredos e configuração local
+.env
+.env.*
+.dev.vars
+!.dev.vars.example
+
+# Pacotes e executáveis grandes (ficam só na máquina)
+*.zip
+*.exe
+*.log
+lunox-esboco-inicial-v5.pdf
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Rascunhos de teste
+probe-*.mjs

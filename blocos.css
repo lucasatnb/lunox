@@ -1,0 +1,127 @@
+/* ============================================================
+   blocos.css — editor de programação em blocos (estrela FU1)
+   ============================================================ */
+
+.editor[hidden]{display:none}
+.blocos-host[hidden]{display:none}
+.blocos-host{display:block}
+
+.blocos{display:flex;flex-direction:column;background:rgba(0,0,0,.28)}
+
+.blocos-topo{
+  display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;
+  padding:9px 11px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.22);
+}
+.blocos-paleta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.blocos-grupo{display:flex;align-items:center;gap:6px}
+.blocos-grupo-nome{
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim2);white-space:nowrap;
+}
+.blocos-dica{font-size:10.5px;color:var(--dim2);line-height:1.5}
+.blocos-dica code{
+  font-family:var(--mono);font-size:10px;color:var(--dim);
+  background:rgba(255,255,255,.06);border-radius:4px;padding:1px 4px;
+}
+
+.bloco-add{
+  font:inherit;font-size:11.5px;font-weight:650;color:#fff;cursor:pointer;
+  border:0;border-radius:9px;padding:6px 10px;line-height:1.15;
+  background:var(--violet);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  transition:transform .12s ease,filter .12s ease;
+  white-space:nowrap;
+}
+.bloco-add:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.bloco-add:active{transform:translateY(0)}
+.bloco-add.t-mostrar{background:#6d4bff}
+.bloco-add.t-variaveis{background:#c98116}
+.bloco-add.t-controle{background:#1f9d63}
+
+.blocos-area{
+  padding:12px;min-height:250px;max-height:44vh;overflow:auto;
+  background:
+    radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0) 0 0/18px 18px;
+}
+
+.blocos-lista{
+  display:flex;flex-direction:column;gap:6px;
+  min-height:28px;border-radius:10px;padding:2px;
+}
+.blocos-lista.alvo{
+  outline:1px dashed rgba(124,92,255,.55);outline-offset:2px;
+  background:rgba(124,92,255,.07);
+}
+.blocos-vazio{font-size:11px;color:var(--dim2);padding:2px 1px 4px}
+
+.bloco{
+  border-radius:10px;padding:5px 7px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  border-left:4px solid var(--violet);
+}
+.bloco-linha{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+.bloco-nome{
+  font-size:11.5px;font-weight:700;color:var(--txt);
+  white-space:nowrap;letter-spacing:.01em;
+}
+
+.bloco-campo{
+  font:inherit;font-size:12px;font-family:var(--mono);
+  color:var(--txt);background:rgba(0,0,0,.42);
+  border:1px solid var(--line2);border-radius:7px;
+  padding:4px 7px;min-width:70px;width:132px;
+}
+.bloco-campo::placeholder{color:var(--dim2)}
+.bloco-campo:focus{
+  outline:none;border-color:var(--violet);
+  box-shadow:0 0 0 2px rgba(124,92,255,.22);
+}
+.bloco-campo-nome{width:80px;min-width:58px}
+
+.bloco-acoes{
+  margin-left:auto;display:flex;gap:3px;opacity:.5;
+  transition:opacity .15s ease;
+}
+.bloco:hover .bloco-acoes,.bloco:focus-within .bloco-acoes{opacity:1}
+.bloco-acoes button{
+  width:22px;height:22px;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:6px;
+  background:rgba(255,255,255,.05);color:var(--dim);
+  font-size:11px;line-height:1;cursor:pointer;
+}
+.bloco-acoes button:hover{color:var(--txt);border-color:var(--line2)}
+.bloco-acoes button[data-acao="apagar"]:hover{color:var(--danger);border-color:rgba(251,113,133,.5)}
+
+.bloco-corpo{
+  margin:6px 0 2px 10px;padding:6px 6px 6px 10px;
+  border-left:2px solid rgba(255,255,255,.16);border-radius:0 8px 8px 0;
+  background:rgba(0,0,0,.18);
+}
+.bloco-senao{margin:5px 0 0 10px}
+
+.blocos-mais{
+  align-self:flex-start;font:inherit;font-size:13px;font-weight:700;
+  width:27px;height:24px;display:grid;place-items:center;
+  border:1px dashed var(--line2);border-radius:7px;
+  background:transparent;color:var(--dim2);cursor:pointer;
+}
+.blocos-mais:hover{color:var(--txt);border-color:var(--violet)}
+
+/* variante compacta (aba admin) */
+.blocos.compacto .blocos-area{min-height:130px;max-height:240px;padding:10px}
+.blocos.compacto .blocos-topo{padding:7px 9px}
+.blocos.compacto .blocos-dica{display:none}
+
+/* tela cheia: o painel cresce junto */
+.df-editor-host .blocos-host{display:flex;flex:1;min-height:0}
+.df-editor-host .blocos{flex:1;min-height:0}
+.df-editor-host .blocos-area{flex:1;max-height:none}
+
+@media (max-width:640px){
+  .blocos-dica{display:none}
+  .blocos-area{max-height:52vh}
+  .bloco-campo{width:104px}
+  .bloco-campo-nome{width:66px}
+}

@@ -1,0 +1,17 @@
+# Copie este arquivo para `.dev.vars` (que não vai para o Git) para rodar
+# `npx wrangler dev` com a publicação da admin ligada.
+#
+# GITHUB_TOKEN só é necessário para o Worker também criar o commit no GitHub.
+# Sem ele, "Publicar para todos" ainda funciona: o conteúdo fica no KV e é
+# servido na hora em /estrelas-conteudo.js.
+
+ADMIN_USERS=lucasatnb
+GITHUB_REPO=lucasatnb/lunox
+GITHUB_BRANCH=main
+GITHUB_ARQUIVO=estrelas-conteudo.js
+
+# Fine-grained PAT com "Contents: Read and write" no repositório lunox.
+# GITHUB_TOKEN=github_pat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Só para testes locais (mock da API do GitHub).
+# GITHUB_API=http://127.0.0.1:8791

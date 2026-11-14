@@ -1,0 +1,190 @@
+/* Admin de aulas — usa as variáveis de app.css */
+
+.adm{--adm-top:64px}
+
+.adm-top{
+  position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;background:rgba(8,7,18,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.adm-voltar{color:var(--purple);text-decoration:none;font-size:13px;flex:none}
+.adm-voltar:hover{color:var(--gold)}
+.adm-titulo{display:flex;flex-direction:column;line-height:1.25;flex:1;min-width:180px}
+.adm-titulo b{font-size:15px}
+.adm-acoes{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.adm-rascunho{
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(255,215,0,.4);border-radius:999px;padding:3px 9px;
+}
+
+.adm-aviso{
+  margin:14px 22px 0;padding:11px 14px;border-radius:12px;font-size:13px;line-height:1.55;
+  background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.32);color:#d8cfff;
+}
+.adm-aviso.ok{background:rgba(74,222,128,.09);border-color:rgba(74,222,128,.3);color:#c6f8d8}
+.adm-aviso.erro{background:rgba(251,113,133,.09);border-color:rgba(251,113,133,.3);color:#ffd0d7}
+
+.adm-grid{
+  display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;
+  padding:18px 22px 90px;align-items:start;
+}
+@media (max-width:900px){ .adm-grid{grid-template-columns:1fr} }
+
+/* ---------------- lista ---------------- */
+.adm-lista{
+  position:sticky;top:calc(var(--adm-top) + 10px);
+  border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;
+}
+@media (max-width:900px){ .adm-lista{position:static} }
+
+.adm-filtros{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.adm-filtros input,.adm-filtros select{
+  width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line2);
+  border-radius:10px;padding:9px 11px;font:inherit;font-size:13px;
+}
+.adm-filtros input:focus,.adm-filtros select:focus{outline:none;border-color:rgba(255,215,0,.45)}
+
+.adm-estrelas{max-height:calc(100vh - 260px);overflow:auto;padding-right:4px}
+@media (max-width:900px){ .adm-estrelas{max-height:320px} }
+
+.adm-const{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.3px;text-transform:uppercase;
+  color:var(--dim2);margin:12px 0 5px;
+}
+.adm-item{
+  display:flex;align-items:center;gap:8px;width:100%;text-align:left;cursor:pointer;
+  background:none;border:1px solid transparent;border-radius:9px;color:var(--dim);
+  font:inherit;font-size:13px;padding:6px 8px;
+}
+.adm-item:hover{background:rgba(255,255,255,.04);color:var(--txt)}
+.adm-item.ativo{background:rgba(255,215,0,.09);border-color:rgba(255,215,0,.35);color:var(--txt)}
+.adm-item .ponto{width:6px;height:6px;border-radius:50%;flex:none;background:var(--cor,var(--violet))}
+.adm-item .nome{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.adm-item .n{
+  font-family:var(--mono);font-size:10px;color:var(--gold);
+  border:1px solid rgba(255,215,0,.35);border-radius:999px;padding:1px 6px;flex:none;
+}
+.adm-nota{margin:10px 0 0;color:var(--dim2)}
+
+/* ---------------- editor ---------------- */
+.adm-editor{
+  border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px;
+  min-height:320px;
+}
+.adm-vazio{color:var(--dim2);font-size:13.5px;padding:40px 10px;text-align:center}
+
+.adm-estrela-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.adm-estrela-head h1{font-size:20px;margin:0}
+.adm-estrela-head .id{font-family:var(--mono);font-size:11px;color:var(--dim2)}
+.adm-estrela-sub{color:var(--dim);font-size:13px;margin:0 0 16px}
+
+.adm-bloco{
+  border:1px solid var(--line);border-radius:12px;background:var(--panel2);
+  padding:12px 14px;margin-bottom:12px;
+}
+.adm-bloco > .adm-bloco-head{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px;
+}
+.adm-bloco-head b{font-size:13.5px}
+.adm-bloco-head .selo{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--purple);border:1px solid rgba(124,92,255,.4);border-radius:999px;padding:2px 8px;
+}
+.adm-bloco-head .espaco{flex:1}
+
+.adm-campo{display:block;margin-bottom:10px}
+
+.adm-playlist-linha{display:flex;gap:8px}
+.adm-playlist-linha input{flex:1;min-width:0}
+.adm-playlist-linha .btn{flex:none;white-space:nowrap}
+.adm-campo > span{display:block;font-size:11.5px;font-weight:700;color:var(--dim);margin-bottom:5px}
+.adm-campo input,.adm-campo textarea,.adm-campo select{
+  width:100%;background:rgba(0,0,0,.25);color:var(--txt);border:1px solid var(--line2);
+  border-radius:10px;padding:9px 11px;font:inherit;font-size:13px;line-height:1.5;
+}
+.adm-campo textarea{resize:vertical;min-height:64px}
+.adm-campo input:focus,.adm-campo textarea:focus{outline:none;border-color:rgba(255,215,0,.45);box-shadow:0 0 0 3px rgba(255,215,0,.07)}
+.adm-campo .dica{display:block;font-size:11px;color:var(--dim2);margin-top:4px}
+.adm-campo .dica.erro{color:var(--danger)}
+.adm-campo .dica.ok{color:var(--ok)}
+
+.adm-grupo{
+  border:1px solid var(--line2);border-radius:12px;padding:12px 14px;margin-bottom:12px;
+  background:rgba(255,255,255,.025);
+}
+.adm-grupo-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.adm-grupo-head .num{
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;
+  font-family:var(--mono);font-size:11px;color:var(--gold);
+  border:1px solid rgba(255,215,0,.35);background:rgba(255,215,0,.07);
+}
+.adm-grupo-head b{font-size:13.5px;flex:1;min-width:80px}
+
+.adm-duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:720px){ .adm-duas{grid-template-columns:1fr} }
+
+.adm-desafio{border-top:1px dashed var(--line2);margin-top:12px;padding-top:12px}
+.adm-desafio-titulo{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#cbb8ff;
+}
+
+/* prévia do vídeo do grupo — assistir para se inspirar no desafio */
+.adm-video-prev{margin:-4px 0 12px}
+.adm-video-prev a{display:inline-flex;align-items:center;gap:10px;color:var(--dim);text-decoration:none;font-size:12px}
+.adm-video-prev a:hover{color:var(--txt)}
+.adm-video-prev img{width:112px;height:63px;object-fit:cover;border-radius:8px;border:1px solid var(--line2);flex:none}
+
+/* gerar todos os desafios da estrela */
+.adm-ia-todos .tiny{margin:0 0 10px;color:var(--dim);line-height:1.5}
+.adm-ia-todos #btn-ia-todos{margin-right:10px}
+.adm-ia-todos #btn-ia-todos:disabled{opacity:.55;cursor:not-allowed}
+
+.adm-previa{font-size:12px;color:var(--dim);margin-top:6px}
+.adm-previa .ok{color:var(--ok)}
+
+.adm-status{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(14px);
+  background:rgba(12,11,26,.95);border:1px solid var(--line2);border-radius:999px;
+  padding:8px 16px;font-size:12.5px;color:var(--txt);opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;z-index:40;max-width:92vw;
+}
+.adm-status.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.btn.small{padding:6px 11px;font-size:12px}
+
+/* ---------------- exercício de código (por grupo e desafio final) ---------------- */
+
+.adm-exercicio{
+  margin-top:12px;border:1px solid rgba(74,222,128,.28);border-radius:12px;
+  padding:12px 14px;background:rgba(74,222,128,.045);
+}
+.adm-exercicio .adm-desafio-titulo{color:#a8f0c0}
+.adm-exercicio .adm-desafio-titulo > span:first-child{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+}
+.adm-exercicio .adm-desafio-titulo > span:first-child::before{content:'› '}
+.adm-exercicio .adm-campo:last-of-type{margin-bottom:0}
+
+.adm-final{border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.035)}
+.adm-final .adm-bloco-head .selo{color:var(--gold);border-color:rgba(255,215,0,.4)}
+
+.adm-campo textarea.adm-code{
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pre;overflow-x:auto;
+  tab-size:2;background:rgba(0,0,0,.4);
+}
+
+.adm-blocos-editor{
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  background:rgba(0,0,0,.25);
+}
+.adm-blocos-editor .blocos{background:transparent}
+.adm-blocos-editor .blocos-area{min-height:150px;max-height:320px}
+
+.adm-teste-linha{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:2px}
+.adm-teste-linha .tiny{color:var(--dim2);font-size:11.5px}
+.adm-teste-resultado{margin-top:9px;font-size:12.5px;line-height:1.6}
+.adm-teste-resultado:empty{display:none}
+.adm-teste-resultado b{display:block;margin-bottom:3px}
+.adm-teste-resultado .ok{color:var(--ok)}
+.adm-teste-resultado .bad{color:var(--danger)}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Admin de aulas</title>
+<meta name="description" content="Cadastre vídeos do YouTube e desafios para cada estrela do mapa do Lunox.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="conta.css">
+<link rel="stylesheet" href="blocos.css">
+</head>
+<body class="adm">
+
+<header class="adm-top">
+  <a class="adm-voltar" href="sua-trilha.html">← Sua trilha</a>
+  <div class="adm-titulo">
+    <b>Admin de aulas</b>
+    <span class="tiny">vídeos e desafios de cada estrela</span>
+  </div>
+  <div class="adm-acoes">
+    <span class="adm-rascunho" id="selo-rascunho" hidden>rascunho local</span>
+    <button class="btn primary small" id="btn-arquivo" type="button" hidden>Salvar no arquivo</button>
+    <button class="btn primary small" id="btn-deploy" type="button" hidden title="Publica o conteúdo para todos os usuários">Publicar</button>
+    <button class="btn ghost small" id="btn-baixar" type="button">Baixar .js</button>
+    <button class="btn ghost small" id="btn-copiar" type="button">Copiar código</button>
+    <button class="btn ghost small" id="btn-descartar" type="button">Descartar rascunho</button>
+  </div>
+</header>
+
+<div class="adm-aviso" id="aviso" hidden></div>
+
+<main class="adm-grid">
+
+  <aside class="adm-lista">
+    <div class="adm-filtros">
+      <input id="busca" type="search" placeholder="Buscar estrela (ex.: laços, React, FU7)" autocomplete="off">
+      <select id="filtro-const" aria-label="Constelação"></select>
+    </div>
+    <div class="adm-estrelas" id="ests"></div>
+    <p class="tiny adm-nota">O selo ao lado do nome mostra quantos grupos a estrela já tem.</p>
+  </aside>
+
+  <section class="adm-editor" id="editor">
+    <div class="adm-vazio">Escolha uma estrela na lista para cadastrar os vídeos e desafios.</div>
+  </section>
+
+</main>
+
+<div class="adm-status" id="status" role="status" aria-live="polite"></div>
+
+<script src="app-core.js"></script>
+<script src="estrelas-extra.js"></script>
+<script src="estrelas-catalogo.js"></script>
+<script src="aulas-yt.js"></script>
+<script src="estrelas-conteudo.js"></script>
+<script src="aulas-estrelas.js"></script>
+<script src="linguagens.js"></script>
+<script src="blocos.js"></script>
+<script src="admin.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

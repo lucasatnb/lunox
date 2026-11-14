@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lunox",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+
+  // Site estático: a pasta do projeto é servida como está — mas o Worker
+  // roda primeiro em TUDO, porque o site inteiro exige login (muro).
+  // Sem sessão, só a página da conta fica aberta; o resto redireciona.
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+
+  // Workers AI: as rotas /api/* usam este binding (env.AI).
+  "ai": { "binding": "AI" },
+
+  // KV: contas (login), o estado sincronizado de cada pessoa (env.KV) e o
+  // conteúdo das estrelas publicado pela aba Admin (conteudo:estrelas).
+  "kv_namespaces": [
+    { "binding": "KV", "id": "728e602742ba40e5ad71390967aa055c" }
+  ],
+
+  // Publicação pela aba Admin.
+  // ADMIN_USERS: usuários (separados por vírgula) que podem publicar.
+  // GITHUB_*: para onde o Worker manda o commit quando existe GITHUB_TOKEN
+  //           (segredo do Worker; sem ele, a publicação fica só no KV).
+  "vars": {
+    "ADMIN_USERS": "lucasatnb",
+    "GITHUB_REPO": "lucasatnb/lunox",
+    "GITHUB_BRANCH": "main",
+    "GITHUB_ARQUIVO": "estrelas-conteudo.js"
+  },
+
+  "observability": { "enabled": true },
+
+  "rules": [
+    { "type": "Text", "globs": ["**/docs/*.md"], "fallthrough": true }
+  ]
+}

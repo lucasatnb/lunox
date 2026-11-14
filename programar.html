@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunox — Programar</title>
+<meta name="description" content="Escreva o código do seu projeto, rode os testes no navegador e valide o refino com IA.">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="conta.css">
+<link rel="stylesheet" href="blocos.css">
+</head>
+<body>
+
+<header id="topbar"></header>
+
+<main class="page">
+
+  <section class="trail-hero" style="margin-bottom:16px">
+    <div>
+      <div class="kicker">Programar</div>
+      <h1>Escreva. Teste. Valide.</h1>
+      <p class="lead">O código roda no seu navegador. A IA revisa o que você escreveu e o refino aprovado acende a estrela da aula.</p>
+    </div>
+    <div class="trail-actions">
+      <a class="btn ghost" href="index.html">Voltar à trilha</a>
+      <a class="btn" href="habilidades.html">Mapa das estrelas</a>
+    </div>
+  </section>
+
+  <div class="ctx-bar">
+    <label class="tiny" for="sel-trilha">trilha</label>
+    <select id="sel-trilha" aria-label="Escolher trilha"></select>
+    <label class="tiny" for="sel-aula">aula</label>
+    <select id="sel-aula" aria-label="Escolher aula"></select>
+    <label class="tiny" for="sel-lang">linguagem</label>
+    <select id="sel-lang" aria-label="Escolher linguagem"></select>
+    <span class="passo-badge" id="passo-badge">passo 1/3</span>
+    <span style="flex:1"></span>
+    <span class="chip" id="ctx-skill"></span>
+  </div>
+
+  <div class="work-layout">
+
+    <aside class="aside">
+
+      <div class="panel ex-panel">
+        <div class="panel-head">
+          <span class="panel-title">Exercício</span>
+          <span class="chip gold" id="ex-level">nível 2</span>
+        </div>
+        <h3 class="ex-title" id="ex-title">Carregando…</h3>
+        <p class="ex-enunciado" id="ex-enunciado"></p>
+        <ul class="reqs" id="ex-reqs"></ul>
+        <details class="dica">
+          <summary>ver dica</summary>
+          <p id="ex-dica"></p>
+        </details>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title" style="margin-bottom:9px">Progresso da aula</div>
+        <div class="row" id="mini-progress"></div>
+        <p class="tiny" style="margin:10px 0 0">O código fica salvo no navegador: você pode fechar e voltar depois.</p>
+        <a class="btn small ghost" href="index.html" style="width:100%;margin-top:10px;justify-content:center">Voltar para as aulas</a>
+      </div>
+
+    </aside>
+
+    <section>
+
+      <div class="panel editor-panel">
+        <div class="ed-toolbar">
+          <span class="ed-file"><span class="dot"></span><span id="ed-file">solucao.js</span></span>
+          <span style="flex:1"></span>
+          <button class="btn small ghost" id="btn-solucao" type="button">Ver solução</button>
+          <button class="btn small ghost" id="btn-limpar" type="button">Limpar</button>
+          <button class="btn small ghost" id="btn-full" type="button" title="Desafio em tela cheia">⛶ Tela cheia</button>
+        </div>
+        <div class="ed-tabs" id="ed-tabs" hidden></div>
+        <div class="blocos-host" id="blocos-host" hidden></div>
+        <div class="editor">
+          <div class="lines" id="lines">1</div>
+          <textarea class="code" id="code" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off" aria-label="Editor de código"></textarea>
+        </div>
+      </div>
+
+      <div class="out-grid">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Testes <span class="count" id="test-count"></span></span>
+            <span style="flex:1"></span>
+            <button class="btn small primary" id="btn-rodar" type="button">Rodar testes</button>
+          </div>
+          <div class="tests" id="testes">
+            <p class="tiny">Ainda não rodou. Escreva sua solução e clique em Rodar testes.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Console</span>
+            <span style="flex:1"></span>
+            <button class="btn small ghost" id="btn-console" type="button">limpar</button>
+          </div>
+          <div class="console" id="console"><span class="prompt">&gt; pronto.</span></div>
+        </div>
+      </div>
+
+      <div class="panel ia-panel" id="ia-panel">
+        <div class="ia-head">
+          <span style="font-size:16px">🐾</span>
+          <b>Revisão com IA</b>
+          <span class="mode" id="ia-mode">NVIDIA nemotron · L2</span>
+        </div>
+        <p class="ia-desc" id="ia-desc">Peça uma revisão do seu código ou valide o refino. A validação aprovada acende a estrela da aula.</p>
+
+        <div class="row">
+          <button class="btn small" id="btn-revisao" type="button">Pedir revisão</button>
+          <button class="btn small primary" id="btn-refino" type="button" disabled>Validar com a IA</button>
+          <span class="tiny" id="ia-hint">rode os testes para liberar a validação</span>
+        </div>
+
+        <div class="ia-spin" id="ia-spin">
+          <span class="spin"></span>
+          <span id="ia-spin-txt">consultando o Nemotron… 0s</span>
+        </div>
+
+        <div class="ia-answer" id="ia-answer"></div>
+        <div class="verdict" id="ia-verdict"></div>
+
+        <div class="refino">
+          <p class="tiny" style="margin:0 0 7px">Quer ajustar algo? Descreva o que você quer melhorar (opcional).</p>
+          <textarea id="refino-pedido" placeholder="Ex.: deixe o código mais curto e explique cada linha." maxlength="600"></textarea>
+        </div>
+
+        <div class="work-foot">
+          <span class="chip" id="status-codigo">código ainda não validado</span>
+          <span class="chip" id="status-ia">refino pendente</span>
+          <span class="spacer"></span>
+          <button class="btn primary" id="btn-concluir" type="button" disabled>Concluir aula</button>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+</main>
+
+<div class="df-overlay" id="df-overlay" hidden>
+  <div class="df-shell">
+    <header class="df-head">
+      <span class="df-kicker">Desafio em tela cheia</span>
+      <b id="df-titulo"></b>
+      <span class="chip gold" id="df-nivel"></span>
+      <span class="spacer"></span>
+      <button class="btn small ghost" id="df-sair" type="button">Sair (Esc)</button>
+    </header>
+    <div class="df-grid">
+      <div class="df-col">
+        <pre class="df-comentario" id="df-comentario" aria-label="Enunciado do desafio (somente leitura)"></pre>
+        <div class="df-editor-host" id="df-editor-host"></div>
+      </div>
+      <div class="df-col">
+        <div class="df-terminal" id="df-terminal"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
+  <p>Demo do esboço · novembro de 2026</p>
+  <div class="links">
+    <a href="index.html">Trilha</a>
+    <a href="chat.html">Chat com o Lunox</a>
+    <a href="habilidades.html">Mapa das estrelas</a>
+    <a href="pitch.html">Apresentação do produto</a>
+  </div>
+</footer>
+
+<script src="app-core.js"></script>
+<script src="estrelas-extra.js"></script>
+<script src="estrelas-catalogo.js"></script>
+<script src="aulas-yt.js"></script>
+<script src="estrelas-conteudo.js"></script>
+<script src="aulas-estrelas.js"></script>
+<script src="linguagens.js"></script>
+<script src="blocos.js"></script>
+<script src="programar.js"></script>
+<script src="conta.js"></script>
+</body>
+</html>

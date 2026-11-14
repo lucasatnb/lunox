@@ -1,0 +1,168 @@
+/* Sua trilha — usa as variáveis de app.css */
+
+.jor-criar{max-width:760px;margin-bottom:22px}
+.jor-label{display:block;font-size:12.5px;font-weight:700;margin:14px 0 7px;color:var(--txt)}
+.jor-label:first-of-type{margin-top:2px}
+.jor-texto,.jor-linha{
+  width:100%;box-sizing:border-box;background:var(--panel2);color:var(--txt);
+  border:1px solid var(--line2);border-radius:12px;padding:11px 13px;
+  font:inherit;font-size:14px;line-height:1.5;resize:vertical;
+}
+.jor-texto:focus,.jor-linha:focus{outline:none;border-color:rgba(255,215,0,.45);box-shadow:0 0 0 3px rgba(255,215,0,.08)}
+.jor-sugs{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.jor-sug{
+  background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--dim);
+  border-radius:999px;padding:5px 11px;font:inherit;font-size:12px;cursor:pointer;
+}
+.jor-sug:hover{color:var(--txt);border-color:var(--line2)}
+
+.jor-nivel{display:flex;gap:8px;flex-wrap:wrap}
+.jor-nivel button{
+  background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--dim);
+  border-radius:11px;padding:8px 13px;font:inherit;font-size:13px;cursor:pointer;
+}
+.jor-nivel button[aria-checked="true"]{color:var(--gold);border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.09)}
+
+.jor-spin{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--dim);font-size:13px}
+.jor-aviso{
+  margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13.5px;line-height:1.55;
+  background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.32);color:#d8cfff;white-space:pre-wrap;
+}
+.jor-aviso.erro{background:rgba(251,113,133,.09);border-color:rgba(251,113,133,.3);color:#ffd0d7}
+
+/* progresso */
+.jor-progresso{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.jor-barra{flex:1;min-width:160px;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.jor-barra i{display:block;height:100%;background:linear-gradient(90deg,var(--violet),var(--gold));border-radius:99px;transition:width .5s}
+
+/* marcos */
+.marco{margin-bottom:26px}
+.marco-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.marco-n{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--purple)}
+.marco-head h2{font-size:18px;margin:0}
+.marco-desc{margin:0 0 12px;color:var(--dim);font-size:13.5px}
+
+/* caminho de estrelas */
+.nos{list-style:none;margin:0;padding:0 0 0 14px;position:relative}
+.nos::before{content:"";position:absolute;left:25px;top:18px;bottom:18px;width:2px;background:linear-gradient(var(--line2),var(--line))}
+.no{position:relative;margin:0 0 8px}
+.no-head{
+  display:flex;align-items:center;gap:11px;width:100%;text-align:left;cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 14px 11px 12px;
+  color:var(--txt);font:inherit;
+}
+.no-head:hover{border-color:var(--line2)}
+.no-star{
+  position:relative;z-index:1;flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;color:var(--dim2);background:var(--bg);border:1.5px solid var(--line2);
+}
+.no.acesa .no-star{color:var(--cor);border-color:var(--cor);box-shadow:0 0 14px color-mix(in srgb,var(--cor) 55%,transparent)}
+.no.proxima .no-star{color:var(--gold);border-color:var(--gold);animation:pulsa 2s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 14px rgba(255,215,0,.5)}}
+.no-nome{font-weight:600;font-size:14.5px;flex:1;min-width:0}
+.no-seta{color:var(--dim2);transition:transform .2s;flex:none}
+.no.aberta .no-seta{transform:rotate(180deg)}
+.no.aberta .no-head{border-color:color-mix(in srgb,var(--cor) 45%,transparent)}
+.no.aberta .no-head,.no.proxima .no-head{background:rgba(24,20,48,.85)}
+
+.no-body{margin:6px 0 0 38px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.no-porque{margin:0 0 6px;font-size:14px;line-height:1.6}
+.no-entrega{margin:0 0 12px;font-size:13.5px;color:var(--dim);line-height:1.55}
+.no-entrega b{color:var(--txt)}
+
+.video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--line)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-vazio{
+  aspect-ratio:16/9;max-height:190px;border-radius:12px;border:1px dashed var(--line2);
+  display:grid;place-items:center;text-align:center;color:var(--dim2);font-size:13px;padding:12px;
+}
+.video-vazio b{display:block;color:var(--dim);margin-bottom:3px}
+.video-partes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.video-partes button{
+  background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--dim);
+  border-radius:9px;padding:5px 11px;font:inherit;font-size:12px;cursor:pointer;
+}
+.video-partes button[aria-pressed="true"]{color:var(--gold);border-color:rgba(255,215,0,.4)}
+.video-meta{margin:9px 0 0;font-size:12.5px;color:var(--dim)}
+.video-meta a{color:var(--purple)}
+.no-resumo{margin:10px 0 0;font-size:13px;color:var(--dim);line-height:1.55}
+
+.no-acoes{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:14px}
+
+@media (max-width:640px){
+  .no-body{margin-left:10px;padding:12px}
+  .no-head{flex-wrap:wrap}
+  .no-nome{flex-basis:calc(100% - 50px)}
+}
+
+/* ---------------- grupos da estrela (vídeo + desafio) ---------------- */
+.grupos{display:flex;flex-direction:column;gap:8px}
+.grupo{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);overflow:hidden}
+.grupo.aberto{border-color:var(--line2);background:rgba(255,255,255,.035)}
+.grupo-head{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  background:none;border:0;color:var(--txt);font:inherit;padding:10px 12px;cursor:pointer;
+}
+.grupo-head:hover{background:rgba(255,255,255,.03)}
+.grupo-n{
+  flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:11px;color:var(--gold);
+  border:1px solid rgba(255,215,0,.35);background:rgba(255,215,0,.07);
+}
+.grupo-titulo{flex:1;min-width:0;font-size:13.5px;font-weight:600}
+.grupo-tags{display:flex;gap:5px;flex-wrap:wrap}
+.grupo.aberto .no-seta{transform:rotate(180deg)}
+.grupo-body{padding:0 12px 12px}
+.grupos-nota{margin:9px 0 0;font-size:12px;color:var(--dim2)}
+.video-vazio-mini{aspect-ratio:auto;max-height:none;padding:14px;font-size:12.5px}
+
+/* desafio */
+.desafio{
+  margin-top:12px;border:1px solid rgba(124,92,255,.35);border-radius:12px;
+  padding:12px 14px;background:rgba(124,92,255,.07);
+}
+.desafio-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px;font-size:14px}
+.desafio-selo{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+  color:#cbb8ff;border:1px solid rgba(124,92,255,.45);border-radius:999px;padding:2px 8px;
+}
+.desafio-enunciado{margin:0;font-size:13.5px;line-height:1.6;white-space:pre-line}
+.desafio-reqs{margin:9px 0 0;padding-left:18px;font-size:13px;color:var(--dim);line-height:1.6}
+.desafio-reqs li{margin-bottom:3px}
+.desafio-dica{margin:10px 0 0;font-size:12.5px;color:var(--dim);line-height:1.55;white-space:pre-line}
+.desafio-dica b{color:var(--gold)}
+.desafio .btn{margin-top:11px}
+.desafio-acoes{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.desafio-acoes .btn{margin-top:11px}
+
+/* resposta escrita (estrelas dissertativas) */
+.desafio-resposta{display:block;margin-top:11px}
+.desafio-resposta > span:first-child{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  color:#cbb8ff;margin-bottom:6px;
+}
+.desafio-resposta textarea{
+  width:100%;box-sizing:border-box;min-height:96px;resize:vertical;
+  background:rgba(0,0,0,.22);color:var(--txt);border:1px solid rgba(124,92,255,.35);
+  border-radius:10px;padding:10px 12px;font:inherit;font-size:13.5px;line-height:1.55;
+}
+.desafio-resposta textarea:focus{outline:none;border-color:rgba(255,215,0,.45);box-shadow:0 0 0 3px rgba(255,215,0,.08)}
+.desafio-resposta-nota{display:block;margin-top:5px;font-size:11.5px;color:var(--dim2)}
+.desafio-vazio{
+  margin-top:12px;border:1px dashed var(--line2);border-radius:12px;padding:12px 14px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;
+  font-size:13px;color:var(--dim);
+}
+.desafio-vazio b{display:block;color:var(--txt);margin-bottom:2px;font-size:13.5px}
+.desafio-vazio .tiny{display:block}
+
+/* desafio final da estrela (criado na admin) */
+.desafio-final-bloco{margin-top:12px}
+.desafio-final{border-color:rgba(255,215,0,.38);background:rgba(255,215,0,.055)}
+.desafio-final .desafio-selo{color:var(--gold);border-color:rgba(255,215,0,.5)}
+.desafio-final .desafio-head b{color:var(--gold)}
+
+@media (max-width:640px){
+  .grupo-tags{display:none}
+  .desafio-vazio{align-items:flex-start;flex-direction:column}
+}
