@@ -1163,7 +1163,7 @@ async function apiAdminPublicar(request, env) {
   let github = null;
   let aviso = "";
   try {
-    github = await commitNoGitHub(env, arquivo, "admin: conteúdo das estrelas (" + carimbo + ")");
+    github = await commitNoGitHub(env, arquivo, "admin: conteúdo das estrelas (" + carimbo + ") [skip ci]");
     if (!github) {
       aviso = "já está no ar pelo KV; configure GITHUB_TOKEN para versionar no Git.";
     }

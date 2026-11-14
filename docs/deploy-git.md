@@ -109,9 +109,9 @@ npx wrangler secret list
 ```
 
 Pronto: ao clicar em **Publicar para todos** na admin, o Worker grava no KV e
-cria o commit. O push do Worker **não** dispara outro deploy (o GitHub Actions
-só roda em push de pessoas, não em commits feitos com o token do Worker — e,
-mesmo se rodasse, publicaria o mesmo conteúdo).
+cria o commit. O commit leva `[skip ci]` na mensagem, então **não** dispara
+outro deploy (o conteúdo já está no ar pelo KV). Se o build ignorar o marcador,
+o pior caso é publicar o mesmo conteúdo duas vezes.
 
 > **Sem o `GITHUB_TOKEN`** a publicação continua real: o site muda na hora para
 > todo mundo. Só o repositório não recebe o commit.
