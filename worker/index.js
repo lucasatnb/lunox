@@ -1148,7 +1148,7 @@ async function apiAdminPublicar(request, env) {
   }
   if (!env.KV) return erro("armazenamento não configurado", 500);
 
-  const corpo = await lerCorpo(request, MAX_CONTEUDO + 4096);
+  const corpo = await lerCorpo(request, 2 * 1024 * 1024);
   if (!corpo) return erro("corpo inválido ou grande demais");
 
   const dados = corpo.dados

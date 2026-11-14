@@ -25,6 +25,15 @@ jobs:
         with:
           node-version: 22
 
+      - name: Conferir os segredos
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Falta o segredo CLOUDFLARE_API_TOKEN. Veja docs/deploy-git.md (passo 3)."
+            exit 1
+          fi
+
       - name: Publicar o Worker
         run: npx --yes wrangler@4 deploy
         env:
