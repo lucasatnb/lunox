@@ -325,10 +325,16 @@
     progresso: 'lunox_progresso',
     codigo: 'lunox_codigo',
     exercicios: 'lunox_exercicios_ok',
+    ofensiva: 'lunox_ofensiva',
     ia: 'lunox_ia_mode',
     chat: 'lunox_chat_historico',
     anim: 'lunox_anim_pendente',
   };
+
+  /* Pontos por exercício concluído. O desafio final vale mais. */
+  const PONTOS_EXERCICIO = 10;
+  const PONTOS_FINAL = 30;
+  const MAX_DIAS_OFENSIVA = 60;
 
   function ler(chave, padrao) {
     try {
@@ -368,6 +374,7 @@
     let progresso = ler(CHAVES.progresso, {}) || {};
     let codigo = ler(CHAVES.codigo, {}) || {};
     let exercicios = ler(CHAVES.exercicios, {}) || {};
+    let ofensiva = normalizarOfensiva(ler(CHAVES.ofensiva, null));
     let atual = ler(CHAVES.atual, null);
     let ia = !!ler(CHAVES.ia, false);
     let anim = ler(CHAVES.anim, []);
@@ -382,7 +389,7 @@
     if (trilhas.length && !trilhas.some((t) => t.id === atual)) atual = trilhas[0].id;
     if (!trilhas.length) atual = null;
 
-    return { trilhas, acesas, atual, progresso, codigo, exercicios, ia, anim };
+    return { trilhas, acesas, atual, progresso, codigo, exercicios, ofensiva, ia, anim };
   }
 
   const estado = carregar();
@@ -394,8 +401,90 @@
     gravar(CHAVES.progresso, estado.progresso);
     gravar(CHAVES.codigo, estado.codigo);
     gravar(CHAVES.exercicios, estado.exercicios);
+    gravar(CHAVES.ofensiva, estado.ofensiva);
     gravar(CHAVES.ia, estado.ia);
     gravar(CHAVES.anim, estado.anim);
+  }
+
+  /* ---------------- ofensiva (dias seguidos voltando) ---------------- */
+
+  /** Data local no formato AAAA-MM-DD (o dia da pessoa, não UTC). */
+  function diaDe(ts) {
+    const d = ts ? new Date(ts) : new Date();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '-' + mm + '-' + dd;
+  }
+
+  function diaAnterior(dia) {
+    const p = String(dia || '').split('-').map(Number);
+    if (p.length !== 3 || p.some((n) => !isFinite(n))) return '';
+    const d = new Date(p[0], p[1] - 1, p[2]);
+    d.setDate(d.getDate() - 1);
+    return diaDe(d.getTime());
+  }
+
+  function normalizarOfensiva(bruto) {
+    const o = bruto && typeof bruto === 'object' ? bruto : {};
+    const dias = Array.isArray(o.dias)
+      ? o.dias.filter((d) => typeof d === 'string' && d).slice(-MAX_DIAS_OFENSIVA)
+      : [];
+    const atual = Math.max(0, Number(o.atual) || 0);
+    return {
+      atual,
+      recorde: Math.max(atual, Number(o.recorde) || 0),
+      ultimoDia: typeof o.ultimoDia === 'string' ? o.ultimoDia : '',
+      dias,
+    };
+  }
+
+  /** Conta 1 visita por dia. Se ontem também veio, a sequência cresce. */
+  function registrarVisita() {
+    const hoje = diaDe();
+    const o = estado.ofensiva || (estado.ofensiva = normalizarOfensiva(null));
+    if (o.ultimoDia === hoje) return o;
+    const ontem = o.ultimoDia ? diaAnterior(hoje) : '';
+    o.atual = o.ultimoDia && o.ultimoDia === ontem ? o.atual + 1 : 1;
+    o.ultimoDia = hoje;
+    o.recorde = Math.max(o.recorde || 0, o.atual);
+    o.dias = (o.dias || []).filter((d) => d !== hoje).concat(hoje).slice(-MAX_DIAS_OFENSIVA);
+    salvar();
+    return o;
+  }
+
+  function ofensiva() {
+    return registrarVisita();
+  }
+
+  // Conta a visita do dia assim que o app abre (uma vez por dia).
+  registrarVisita();
+
+  /* ---------------- pontos ---------------- */
+
+  function pontosDoExercicio(_sid, chave) {
+    return chave === 'final' ? PONTOS_FINAL : PONTOS_EXERCICIO;
+  }
+
+  /** Pontos derivados do estado: nunca somam o mesmo exercício duas vezes. */
+  function pontosTotais() {
+    let total = 0;
+    const ex = estado.exercicios || {};
+    Object.keys(ex).forEach((sid) => {
+      const mapa = ex[sid] || {};
+      Object.keys(mapa).forEach((chave) => {
+        if (mapa[chave]) total += pontosDoExercicio(sid, chave);
+      });
+    });
+    // exercícios embutidos das aulas (marcados em progresso[id][aula].editor)
+    const pr = estado.progresso || {};
+    Object.keys(pr).forEach((id) => {
+      if (id.indexOf('estrela:') === 0) return; // exercício avulso já contado acima
+      const p = pr[id] || {};
+      Object.keys(p).forEach((aula) => {
+        if (p[aula] && p[aula].editor) total += PONTOS_EXERCICIO;
+      });
+    });
+    return total;
   }
 
   function achar(id) {
@@ -607,6 +696,26 @@
     return exerciciosDaEstrela(sid).filter((e) => !exercicioOk(sid, e.chave));
   }
 
+  /** Exercícios das aulas (grupos). O desafio final fica de fora. */
+  function exerciciosDaAula(sid) {
+    return exerciciosDaEstrela(sid).filter((e) => e.tipo === 'grupo');
+  }
+
+  /**
+   * O desafio final só abre depois dos exercícios das aulas.
+   * Também fica liberado se a estrela já foi acesa, se o final já foi feito,
+   * ou se a estrela não tem exercícios de aula (não há o que concluir antes).
+   */
+  function finalLiberado(sid) {
+    if (!sid) return true;
+    if (exercicioOk(sid, 'final')) return true;
+    const sk = SKILLS.find((s) => s.star === sid);
+    if (sk && estado.acesas.has(sk.id)) return true;
+    const daAula = exerciciosDaAula(sid);
+    if (!daAula.length) return true;
+    return daAula.every((e) => exercicioOk(sid, e.chave));
+  }
+
   /* Sem exercícios cadastrados, a estrela acende como antes.
      Com exercícios, só acende quando todos estiverem resolvidos. */
   function podeAcender(sid) {
@@ -645,6 +754,9 @@
     const el = document.getElementById('topbar');
     if (!el) return;
     const nivel = nivelGato();
+    const of = estado.ofensiva || { atual: 0, recorde: 0 };
+    const pts = pontosTotais();
+    const dias = of.atual || 0;
     el.className = 'topbar';
     el.innerHTML =
       '<div class="topbar-in">' +
@@ -655,10 +767,16 @@
           ).join('') +
         '</nav>' +
         '<div class="top-meta">' +
+          '<span class="chip ofensiva" title="' +
+            (dias > 0 ? dias + ' dia(s) seguidos voltando ao Lunox · recorde: ' + (of.recorde || dias) : 'Volte amanhã para começar uma ofensiva') +
+          '">🔥 ' + dias + (dias === 1 ? ' dia' : ' dias') + '</span>' +
+          '<span class="chip pontos" title="' + pts + ' pontos por exercícios concluídos">⭐ ' + pts + ' pts</span>' +
           '<span class="badge-demo">demo</span>' +
           '<a href="habilidades.html" title="seu Lunox"><img class="top-gato" src="' + imgGato(nivel) + '" alt="Lunox"></a>' +
         '</div>' +
       '</div>';
+    // o conta.js escuta este evento para recolocar o chip do usuário
+    try { document.dispatchEvent(new CustomEvent('lunox:nav')); } catch {}
   }
 
   function sessao() {
@@ -684,7 +802,9 @@
     acender, pendentesAnim, limparAnim, acharAulaPorSkill, rodarCodigo,
     progressoDe, marcar, aulaOk, progressoTrilha, codigoDe, salvarCodigo,
     exerciciosDaEstrela, exercicioOk, marcarExercicio, desmarcarExercicio,
-    exerciciosPendentes, podeAcender,
+    exerciciosPendentes, exerciciosDaAula, finalLiberado, podeAcender,
+    ofensiva, registrarVisita, pontosDoExercicio, pontosTotais,
+    PONTOS_EXERCICIO, PONTOS_FINAL,
     montarNav,
   };
 })(window);

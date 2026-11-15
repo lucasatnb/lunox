@@ -162,6 +162,17 @@
 .desafio-final .desafio-selo{color:var(--gold);border-color:rgba(255,215,0,.5)}
 .desafio-final .desafio-head b{color:var(--gold)}
 
+/* desafio final travado até concluir os exercícios das aulas */
+.final-travado{
+  border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.035);
+  border-style:dashed;
+}
+.final-travado .desafio-selo{color:var(--dim2);border-color:rgba(255,255,255,.16)}
+.final-travado .desafio-head b{color:var(--txt)}
+.final-travado-nota{margin:10px 0 0;font-size:12.5px;color:var(--dim2)}
+.final-travado-lista{margin-top:5px;color:var(--dim)}
+.final-travado-lista li::marker{color:var(--dim2)}
+
 @media (max-width:640px){
   .grupo-tags{display:none}
   .desafio-vazio{align-items:flex-start;flex-direction:column}

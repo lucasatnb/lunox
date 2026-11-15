@@ -103,6 +103,30 @@
     return dados;
   }
 
+  /** Mantém a ofensiva local quando o servidor ainda não conhece o dia de hoje. */
+  function mesclarOfensiva(localBruto, remotoBruto) {
+    let local = null;
+    let remoto = null;
+    try { local = localBruto ? JSON.parse(localBruto) : null; } catch {}
+    try { remoto = remotoBruto ? JSON.parse(remotoBruto) : null; } catch {}
+    if (!local || typeof local !== 'object') return remotoBruto;
+    if (!remoto || typeof remoto !== 'object') return localBruto;
+    const dias = Array.from(new Set(
+      (Array.isArray(local.dias) ? local.dias : []).concat(Array.isArray(remoto.dias) ? remoto.dias : [])
+    ))
+      .filter((d) => typeof d === 'string' && d)
+      .sort()
+      .slice(-60);
+    const recente = String(local.ultimoDia || '') > String(remoto.ultimoDia || '') ? local : remoto;
+    const atual = Math.max(0, Number(recente.atual) || 0);
+    return JSON.stringify({
+      atual,
+      recorde: Math.max(atual, Number(local.recorde) || 0, Number(remoto.recorde) || 0),
+      ultimoDia: recente.ultimoDia || '',
+      dias,
+    });
+  }
+
   function aplicar(dados) {
     let mudou = false;
     aplicando = true;
@@ -115,10 +139,16 @@
         if (k && k.indexOf('lunox') === 0 && !EXCLUIR.test(k)) atuais.push(k);
       }
       atuais.forEach((k) => {
-        if (!conjunto.has(k)) { lsDel(k); mudou = true; }
+        if (!conjunto.has(k)) {
+          // a ofensiva é local por natureza: não some só porque o servidor ainda não a tem
+          if (k === 'lunox_ofensiva') return;
+          lsDel(k);
+          mudou = true;
+        }
       });
       remotas.forEach((k) => {
-        const v = dados[k];
+        let v = dados[k];
+        if (k === 'lunox_ofensiva') v = mesclarOfensiva(ls(k, null), v);
         if (ls(k, null) !== v) {
           try { localStorage.setItem(k, v); } catch {}
           mudou = true;
@@ -212,10 +242,13 @@
 
     if (r.dados.estado && salvoEm > Math.max(localEm, sujo)) {
       // o servidor está mais novo (outra máquina, ou este navegador nunca sincronizou)
+      const ofAntes = ls('lunox_ofensiva', null);
       const mudou = aplicar(r.dados.estado);
       lsSet(CH_SYNC_EM, salvoEm);
       lsSet(CH_SUJO, 0);
-      lsSet(CH_COPIA, JSON.stringify(capturar()));
+      // se a ofensiva local mudou (o dia de hoje), deixa o autosave subir de novo
+      if (ls('lunox_ofensiva', null) === ofAntes) lsSet(CH_COPIA, JSON.stringify(capturar()));
+      else lsDel(CH_COPIA);
       pintar();
       if (mudou && !recarregou()) {
         try { sessionStorage.setItem(MARCA_RELOAD, '1'); } catch {}
@@ -328,6 +361,9 @@
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') descarregar();
     });
+
+    // o topo é redesenhado quando os pontos mudam: recoloca o chip da conta
+    document.addEventListener('lunox:nav', () => { if (logado()) chipTopbar(); });
   }
 
   /* ---------------- interface ---------------- */

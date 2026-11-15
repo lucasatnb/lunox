@@ -103,9 +103,34 @@
     return grupos.map((g, i) => grupoHtml(sid, g, i, i === aberto)).join('');
   }
 
+  /** Desafio final ainda travado: mostra o que falta em vez dos botões do editor. */
+  function blocoFinalTravado(sid, ex) {
+    const daAula = exerciciosDe(sid).filter((e) => e.tipo === 'grupo');
+    const feitos = daAula.filter((e) => exFeito(sid, e.chave)).length;
+    const falta = daAula.filter((e) => !exFeito(sid, e.chave));
+    const primeiro = falta[0];
+    const link = primeiro
+      ? 'programar.html?estrela=' + encodeURIComponent(sid) + '&grupo=' + primeiro.indice
+      : 'sua-trilha.html?estrela=' + encodeURIComponent(sid);
+    return '<section class="desafio exercicio desafio-final final-travado">' +
+      '<div class="desafio-head"><span class="desafio-selo">🔒 Desafio final</span>' +
+      (ex.titulo ? '<b>' + esc(ex.titulo) + '</b>' : '') +
+      '<span class="chip dim">' + feitos + '/' + daAula.length + ' exercícios</span>' +
+      '</div>' +
+      '<p class="desafio-enunciado">Conclua os exercícios das aulas para destravar o desafio final.</p>' +
+      '<p class="final-travado-nota">' + (falta.length === 1 ? 'Falta 1 exercício:' : 'Faltam ' + falta.length + ' exercícios:') + '</p>' +
+      '<ul class="desafio-reqs final-travado-lista">' + falta.map((e) => '<li>' + esc(e.titulo) + '</li>').join('') + '</ul>' +
+      '<div class="desafio-acoes">' +
+        '<a class="btn small primary" href="' + link + '">' + (primeiro ? 'Ir para o primeiro pendente' : 'Voltar para a trilha') + '</a>' +
+      '</div>' +
+    '</section>';
+  }
+
   /** Exercício de código/escrito criado na admin. */
   function blocoExercicio(sid, ex, chave, indice, ehFinal) {
     const feito = exFeito(sid, chave);
+    if (ehFinal && L.finalLiberado && !L.finalLiberado(sid)) return blocoFinalTravado(sid, ex);
+    const pts = L.pontosDoExercicio ? L.pontosDoExercicio(sid, chave) : 0;
     const q = 'estrela=' + encodeURIComponent(sid) + (ehFinal ? '&final=1' : '&grupo=' + indice);
     const rotuloLing = ex.linguagem === 'blocos' ? 'Blocos'
       : ex.linguagem === 'python' ? 'Python'
@@ -115,6 +140,7 @@
       '<div class="desafio-head"><span class="desafio-selo">' + (ehFinal ? 'Desafio final' : 'Exercício') + '</span>' +
       (ex.titulo ? '<b>' + esc(ex.titulo) + '</b>' : '') +
       (ex.testes.trim() ? '<span class="chip dim">' + rotuloLing + '</span>' : '') +
+      (pts ? '<span class="chip pontos" title="pontos ao concluir">⭐ +' + pts + ' pts</span>' : '') +
       (feito ? '<span class="chip ok">concluído ✓</span>' : '') +
       '</div>' +
       (ex.enunciado ? '<p class="desafio-enunciado">' + esc(ex.enunciado) + '</p>' : '') +
@@ -624,14 +650,17 @@
 
   /** Exercício escrito (sem testes) marcado como concluído na trilha. */
   function concluirExercicio(sid, chave) {
+    if (exFeito(sid, chave)) return;
+    const pts = L.pontosDoExercicio ? L.pontosDoExercicio(sid, chave) : 0;
     if (!L.marcarExercicio(sid, chave)) return;
     const sk = L.skillDaEstrela(sid);
     const pend = pendentesDe(sid);
     const nova = sk && !pend.length ? L.acender(sk.id) : false;
+    const extra = pts ? ' · +' + pts + ' pts' : '';
     toast(nova
-      ? '⭐ Estrela acesa: ' + L.estrela(sid).nome
-      : (pend.length ? 'Exercício concluído ✓ Faltam ' + pend.length + ' nesta estrela' : 'Exercício concluído ✓'));
-    if (nova) L.montarNav('jornada');
+      ? '⭐ Estrela acesa: ' + L.estrela(sid).nome + extra
+      : (pend.length ? 'Exercício concluído ✓ Faltam ' + pend.length + ' nesta estrela' + extra : 'Exercício concluído ✓' + extra));
+    L.montarNav('jornada');
     aberta = sid;
     render();
     if (noEl(sid)) abrir(sid, false);

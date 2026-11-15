@@ -499,6 +499,33 @@ self.onmessage = function (e) {
       : 'python';
   }
 
+  // desafio final só abre depois dos exercícios das aulas da estrela
+  if (custom && custom.tipo === 'final' && L.finalLiberado && !L.finalLiberado(custom.sid)) {
+    const daAula = L.exerciciosDaAula ? L.exerciciosDaAula(custom.sid) : [];
+    const falta = daAula.filter((e) => !L.exercicioOk(custom.sid, e.chave));
+    const feitos = daAula.length - falta.length;
+    const primeiro = falta[0];
+    const link = primeiro
+      ? 'programar.html?estrela=' + encodeURIComponent(custom.sid) + '&grupo=' + primeiro.indice
+      : 'sua-trilha.html?estrela=' + encodeURIComponent(custom.sid);
+    $('main').innerHTML = '<div class="panel final-bloqueio" style="max-width:640px;margin:50px auto;text-align:center">' +
+      '<div class="kicker">Desafio final</div>' +
+      '<h2>🔒 Desafio final bloqueado</h2>' +
+      '<p class="lead" style="margin:10px auto 16px">Conclua os exercícios das aulas da estrela <b>' +
+        esc(L.estrela(custom.sid).nome) + '</b> antes de fazer o desafio final.</p>' +
+      '<span class="chip ' + (falta.length ? 'dim' : 'ok') + '">' + feitos + '/' + daAula.length + ' exercícios concluídos</span>' +
+      (falta.length
+        ? '<ul class="desafio-reqs" style="text-align:left;max-width:420px;margin:16px auto">' +
+          falta.map((e) => '<li>' + esc(e.titulo) + '</li>').join('') + '</ul>'
+        : '') +
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">' +
+        '<a class="btn primary" href="' + link + '">' + (primeiro ? 'Ir para o primeiro pendente' : 'Voltar para a trilha') + '</a>' +
+        '<a class="btn ghost" href="sua-trilha.html?estrela=' + encodeURIComponent(custom.sid) + '">Ver a estrela</a>' +
+      '</div>' +
+    '</div>';
+    return;
+  }
+
   // vindo do mapa: ?skill=funcoes abre a aula/exercício dessa estrela
   const skillParam = custom ? null : params.get('skill');
   const resolvido = skillParam ? L.acharAulaPorSkill(skillParam) : null;
@@ -793,10 +820,12 @@ self.onmessage = function (e) {
 
   function renderMiniProgresso() {
     const pr = L.progressoDe(trilha.id)[aulaIdx] || {};
+    const pts = custom && L.pontosDoExercicio ? L.pontosDoExercicio(custom.sid, custom.chave) : 0;
     $('#mini-progress').innerHTML =
       '<span class="chip' + (pr.lida ? ' gold' : '') + '">📖 aula</span>' +
       '<span class="chip' + (pr.editor ? ' ok' : '') + '">⌨ código</span>' +
-      '<span class="chip' + (pr.ia ? ' gold' : '') + '">🐾 refino</span>';
+      '<span class="chip' + (pr.ia ? ' gold' : '') + '">🐾 refino</span>' +
+      (pts ? '<span class="chip pontos" title="pontos ao concluir">⭐ +' + pts + ' pts</span>' : '');
   }
 
   function resetSaidas() {
@@ -948,18 +977,25 @@ self.onmessage = function (e) {
 
   function concluirCustom(mostrarAviso) {
     if (!custom) return;
+    if (custom.tipo === 'final' && L.finalLiberado && !L.finalLiberado(custom.sid)) {
+      toast('Conclua os exercícios das aulas antes do desafio final.');
+      return;
+    }
+    const jaFeito = L.exercicioOk(custom.sid, custom.chave);
+    const pts = !jaFeito && L.pontosDoExercicio ? L.pontosDoExercicio(custom.sid, custom.chave) : 0;
     L.marcarExercicio(custom.sid, custom.chave);
     const pend = L.exerciciosPendentes(custom.sid);
     const sk = L.skillDaEstrela(custom.sid);
     const nova = sk && !pend.length ? L.acender(sk.id) : false;
+    const extra = pts ? ' · +' + pts + ' pts' : '';
     if (nova) {
-      L.montarNav('programar');
-      toast('⭐ Estrela acesa: ' + L.estrela(custom.sid).nome + ' — todos os exercícios resolvidos');
+      toast('⭐ Estrela acesa: ' + L.estrela(custom.sid).nome + ' — todos os exercícios resolvidos' + extra);
     } else if (mostrarAviso) {
       toast(pend.length
-        ? 'Exercício concluído ✓ Faltam ' + pend.length + ' nesta estrela'
-        : 'Exercício concluído ✓');
+        ? 'Exercício concluído ✓ Faltam ' + pend.length + ' nesta estrela' + extra
+        : 'Exercício concluído ✓' + extra);
     }
+    if (nova || pts) L.montarNav('programar');
     atualizarStatus();
     renderMiniProgresso();
   }
@@ -980,6 +1016,7 @@ self.onmessage = function (e) {
       codigoValidado = true;
       L.marcar(trilha.id, aulaIdx, 'editor');
       if (custom) concluirCustom(false);
+      else L.montarNav('programar');
       $('#console').textContent += data.livre
         ? '\n✓ Compilou e executou sem erros. Peça o refino com IA.'
         : '\n✓ ' + total + ' teste(s) passaram. Peça o refino com IA.';
