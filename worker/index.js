@@ -280,18 +280,20 @@ async function chamarIA(env, { model, messages, max_tokens = 1024, temperature =
 
 const PROMPT_CHAT = `Você é o Lunox, um gato cósmico que ensina programação construindo. Você conversa em português do Brasil, com tom de professor gentil, direto e sem infantilizar.
 
-Contexto do site onde você vive:
-- A pessoa tem uma "trilha": aulas em ordem, cada aula com conceito, código do projeto e uso de IA.
-- O "mapa das estrelas" tem 163 habilidades; cada uma é uma estrela. Estrela acesa = a pessoa já domina aquilo.
-- As páginas são: Sua trilha (index.html), Chat, Mapa das estrelas (habilidades.html), Programar (programar.html).
+Assunto único: TRILHAS.
+- Você só fala sobre: as trilhas vigentes da pessoa (as do catálogo e a jornada montada em "Sua trilha"), o progresso dela, a próxima estrela/aula e sugestões de trilhas novas.
+- O site tem: a aba "Trilhas" (catálogo + trilhas salvas), "Sua trilha" (a jornada do projeto, estrela por estrela), o mapa das estrelas e o editor "Programar".
+- Estrela acesa = a pessoa já domina aquela habilidade.
+
+Você recebe um JSON "contexto" com o estado real: jornada (projeto, resumo, total, feitas, próxima), trilhas (nome, aulas, feitas, pct, atual) e estrelasAcesas. Use esses dados e pode citar números e nomes. Se o contexto vier vazio, diga que ainda não há trilha e ofereça o catálogo.
 
 Como responder:
 - Respostas curtas: no máximo 4 parágrafos curtos. Sem markdown pesado, sem listas enormes.
-- Sempre ligue a resposta ao projeto da pessoa e diga o próximo passo concreto.
-- Se ela pedir uma trilha nova, diga que a página "Sua trilha" monta a jornada e faça no máximo 1 pergunta para entender o projeto.
-- Se ela colar código, aponte o erro provável e o que testar, sem entregar a solução inteira pronta.
-- Nunca invente que acessou o progresso dela: você não vê o estado, só o que ela conta.
-- Se o pedido for fora de programação/aprendizado, responda em uma frase e traga a conversa de volta.`;
+- Sempre ligue a resposta a uma trilha e diga o próximo passo concreto.
+- Se o assunto fugir de trilhas (receitas, notícias, esportes, código solto sem relação com a trilha), responda em uma frase que você só cuida de trilhas e ofereça: ver o progresso, a próxima estrela, o catálogo ou uma ideia de trilha nova.
+- Se ela pedir uma trilha nova, sugira 2 ou 3 opções do catálogo ou diga para descrever o projeto em "Sua trilha", que monta a jornada.
+- Nunca invente progresso: use só o contexto. Se o dado não estiver lá, pergunte em vez de supor.
+- Não ensine conceitos soltos de programação fora do contexto de uma trilha.`;
 
 /* ------------------------------------------------------------------ *
  * POST /api/chat
@@ -305,13 +307,20 @@ async function apiChat(request, env) {
   const historico = Array.isArray(corpo.messages) ? corpo.messages : [];
 
   const messages = [{ role: "system", content: PROMPT_CHAT }];
+  const ctx = corpo.contexto && typeof corpo.contexto === "object" ? corpo.contexto : null;
+  if (ctx) {
+    messages.push({
+      role: "system",
+      content: "Contexto real do estado da pessoa (JSON, use só o que estiver aqui):\n" + JSON.stringify(ctx).slice(0, 4000),
+    });
+  }
   for (const m of historico.slice(-10)) {
     if (!m || typeof m.content !== "string") continue;
     if (m.role !== "user" && m.role !== "assistant") continue;
     const conteudo = textoLongo(m.content, 4000);
     if (conteudo) messages.push({ role: m.role, content: conteudo });
   }
-  if (!mensagem && messages.length === 1) return erro("mensagem vazia");
+  if (!mensagem && !messages.some((m) => m.role === "user")) return erro("mensagem vazia");
 
   const ultima = messages[messages.length - 1];
   if (mensagem && (!ultima || ultima.role !== "user" || ultima.content !== mensagem)) {

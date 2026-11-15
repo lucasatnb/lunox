@@ -326,6 +326,7 @@
     codigo: 'lunox_codigo',
     exercicios: 'lunox_exercicios_ok',
     ofensiva: 'lunox_ofensiva',
+    jornada: 'lunox_jornada',
     ia: 'lunox_ia_mode',
     chat: 'lunox_chat_historico',
     anim: 'lunox_anim_pendente',
@@ -734,6 +735,44 @@
     return estado.codigo[id + ':' + aulaIdx] || '';
   }
 
+  /* ---------------- jornada (trilha montada pela IA) ---------------- */
+
+  /** Lê a jornada salva em Sua trilha. Devolve null se não existe/está quebrada. */
+  function jornadaSalva() {
+    try {
+      const j = JSON.parse(localStorage.getItem(CHAVES.jornada));
+      return j && Array.isArray(j.marcos) && j.marcos.length ? j : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Resumo da jornada para o topo/chat: quantas estrelas a pessoa já acendeu,
+   * qual é a próxima e o motivo dela estar na trilha.
+   */
+  function resumoJornada() {
+    const j = jornadaSalva();
+    if (!j) return null;
+    const etapas = j.marcos
+      .flatMap((m) => (Array.isArray(m.etapas) ? m.etapas : []))
+      .filter((et) => et && et.estrela)
+      .map((et) => {
+        const sk = SKILLS.find((s) => s.star === et.estrela) || null;
+        return { estrela: et.estrela, porque: et.porque || '', entrega: et.entrega || '', skill: sk ? sk.id : '' };
+      });
+    const feitas = etapas.filter((et) => et.skill && estado.acesas.has(et.skill));
+    const proxima = etapas.find((et) => et.skill && !estado.acesas.has(et.skill)) || null;
+    return {
+      projeto: j.projeto || 'Sua jornada',
+      resumo: j.resumo || '',
+      total: etapas.length,
+      feitas: feitas.length,
+      proxima,
+      etapas,
+    };
+  }
+
   function salvarCodigo(id, aulaIdx, texto) {
     estado.codigo[id + ':' + aulaIdx] = texto;
     gravar(CHAVES.codigo, estado.codigo);
@@ -742,7 +781,7 @@
   /* ---------------- navegação ---------------- */
 
   const NAV = [
-    { href: 'index.html', rotulo: 'Trilha', chave: 'trilha' },
+    { href: 'index.html', rotulo: 'Trilhas', chave: 'trilha' },
     { href: 'sua-trilha.html', rotulo: 'Sua trilha', chave: 'jornada' },
     { href: 'chat.html', rotulo: 'Chat', chave: 'chat' },
     { href: 'habilidades.html', rotulo: 'Habilidades', chave: 'habilidades' },
@@ -801,6 +840,7 @@
     skill, acesa, alternarEstrela, nivelGato,
     acender, pendentesAnim, limparAnim, acharAulaPorSkill, rodarCodigo,
     progressoDe, marcar, aulaOk, progressoTrilha, codigoDe, salvarCodigo,
+    jornadaSalva, resumoJornada,
     exerciciosDaEstrela, exercicioOk, marcarExercicio, desmarcarExercicio,
     exerciciosPendentes, exerciciosDaAula, finalLiberado, podeAcender,
     ofensiva, registrarVisita, pontosDoExercicio, pontosTotais,

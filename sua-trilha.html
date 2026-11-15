@@ -24,6 +24,14 @@
     <div class="trail-actions" id="jor-acoes"></div>
   </section>
 
+  <section class="panel jor-minhas" id="jor-trilhas" hidden>
+    <div class="panel-head">
+      <span class="panel-title">Minhas trilhas</span>
+      <span class="tiny">as trilhas que você começou no catálogo</span>
+    </div>
+    <div class="jor-minhas-lista" id="lista-trilhas-jor"></div>
+  </section>
+
   <section class="panel jor-criar" id="jor-criar" hidden>
     <div class="panel-head">
       <span class="panel-title" id="criar-titulo">Monte sua jornada</span>
@@ -47,6 +55,18 @@
 
     <div class="jor-spin" id="jor-spin" hidden><span class="spin"></span><span id="jor-spin-txt">o Lunox está montando…</span></div>
     <div class="jor-aviso" id="jor-aviso" hidden></div>
+
+    <div class="jor-pergunta" id="jor-pergunta" hidden>
+      <div class="jor-pergunta-head"><span class="jor-pergunta-selo">O Lunox quer saber</span></div>
+      <p class="jor-pergunta-txt" id="jor-pergunta-txt"></p>
+      <label class="jor-label" for="resposta-ia">Sua resposta</label>
+      <textarea class="jor-texto" id="resposta-ia" rows="3" maxlength="400" placeholder="Responda em uma frase para o Lunox terminar de montar a trilha"></textarea>
+      <div class="row" style="margin-top:10px;gap:10px;flex-wrap:wrap">
+        <button class="btn primary" type="button" id="btn-responder-ia">Responder e montar</button>
+        <button class="btn ghost" type="button" id="btn-plano-local">Montar sem responder</button>
+      </div>
+    </div>
+
     <p class="tiny" id="criar-nota" style="margin:12px 0 0" hidden>A jornada atual só é trocada quando a nova ficar pronta.</p>
   </section>
 
@@ -63,7 +83,7 @@
   <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
   <p>Demo do esboço · novembro de 2026</p>
   <div class="links">
-    <a href="index.html">Trilha</a>
+    <a href="index.html">Trilhas</a>
     <a href="habilidades.html">Mapa das estrelas</a>
     <a href="programar.html">Programar</a>
     <a href="pitch.html">Apresentação do produto</a>

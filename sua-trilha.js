@@ -27,6 +27,8 @@
   let nivel = (jor && jor.nivel) || 'nunca_programei';
   let criando = false;
   let ocupado = false;
+  // pergunta da IA esperando resposta: { projeto, detalhes, rodada }
+  let pendente = null;
   let aberta = null;
   // veio do botão "Nova trilha": abre direto o formulário de criação
   const abrirCriacao = new URLSearchParams(location.search).get('nova') === '1';
@@ -334,13 +336,17 @@
   /* ---------------- IA ---------------- */
 
   function extrair(data) {
-    if (data && Array.isArray(data.marcos)) return data;
+    // pergunta/aviso também são respostas válidas: quem decide é o montar()
+    if (data && (Array.isArray(data.marcos) || data.pergunta || data.aviso)) return data;
     if (data && data.jornada) return data.jornada;
     const c = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
     if (typeof c === 'string') {
       const i = c.indexOf('{');
       const j = c.lastIndexOf('}');
-      if (i >= 0 && j > i) return JSON.parse(c.slice(i, j + 1));
+      if (i >= 0 && j > i) {
+        const obj = JSON.parse(c.slice(i, j + 1));
+        if (obj && (Array.isArray(obj.marcos) || obj.pergunta || obj.aviso)) return obj;
+      }
     }
     throw new Error('resposta sem jornada');
   }
@@ -376,13 +382,56 @@
   function spin(on) {
     $('#jor-spin').hidden = !on;
     $('#btn-montar').disabled = on;
+    $('#btn-responder-ia').disabled = on;
+    $('#btn-plano-local').disabled = on;
   }
 
-  async function montar() {
+  /* ---------------- pergunta da IA (não trava mais) ---------------- */
+
+  function mostrarPergunta(texto) {
+    const box = $('#jor-pergunta');
+    if (!box) return;
+    box.hidden = false;
+    $('#jor-pergunta-txt').textContent = texto;
+    $('#resposta-ia').value = '';
+    setTimeout(() => {
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('#resposta-ia').focus();
+    }, 150);
+  }
+
+  function limparPergunta() {
+    const box = $('#jor-pergunta');
+    if (box) box.hidden = true;
+    const campo = $('#resposta-ia');
+    if (campo) campo.value = '';
+    pendente = null;
+  }
+
+  function salvarJornada(raw, marcos, origem, projeto) {
+    jor = {
+      projeto: txt(raw.projeto, 60) || txt(projeto, 60),
+      resumo: txt(raw.resumo, 300),
+      origem, nivel, criada: Date.now(), marcos,
+    };
+    gravar();
+    criando = false;
+    aberta = null;
+    limparPergunta();
+    history.replaceState(null, '', location.pathname);
+    render();
+    toast(origem === 'ia' ? 'Sua jornada está pronta' : 'Jornada montada localmente: a IA não respondeu');
+  }
+
+  /** Monta a jornada. `extra` é a resposta dada à pergunta da IA. */
+  async function montar(extra) {
     if (ocupado) return;
-    const projeto = txt($('#projeto').value, 400);
+    const base = pendente;
+    const projeto = base ? base.projeto : txt($('#projeto').value, 400);
     if (projeto.length < 4) { aviso('Conte em uma frase o que você quer construir.', true); return; }
-    const detalhes = txt($('#detalhes').value, 200);
+    const detalhesBase = base ? base.detalhes : txt($('#detalhes').value, 200);
+    const rodada = base ? base.rodada + 1 : 0;
+    const detalhes = [detalhesBase, txt(extra, 400)].filter(Boolean).join(' | ').slice(0, 600);
     const acesas = acesasIds();
 
     ocupado = true;
@@ -398,14 +447,25 @@
       raw = await pedirIA(projeto, detalhes, acesas);
     } catch (e) {
       origem = 'local';
-      raw = planoLocal(projeto);
+      raw = planoLocal(projeto + ' ' + detalhes);
     }
     let marcos = normalizar(raw, acesas);
 
-    // a IA respondeu, mas sem trilha: ou ela tem uma pergunta, ou usamos o plano local
-    if (!marcos.length && origem === 'ia' && !raw.pergunta && !raw.aviso) {
+    // a IA fez uma pergunta: guarda o pedido e abre o campo de resposta
+    if (!marcos.length && origem === 'ia' && raw.pergunta && rodada < 2) {
+      clearInterval(timer);
+      spin(false);
+      ocupado = false;
+      pendente = { projeto, detalhes, rodada };
+      aviso('');
+      mostrarPergunta(txt(raw.pergunta, 400));
+      return;
+    }
+
+    // respondeu sem trilha (ou já perguntou duas vezes): cai no plano local
+    if (!marcos.length) {
       origem = 'local';
-      raw = planoLocal(projeto);
+      raw = planoLocal(projeto + ' ' + detalhes);
       marcos = normalizar(raw, acesas);
     }
 
@@ -414,21 +474,27 @@
     ocupado = false;
 
     if (!marcos.length) {
-      aviso(txt(raw.pergunta || raw.aviso, 500) || 'Não consegui montar uma trilha com esse pedido. Tente descrever o projeto de outro jeito.', !(raw.pergunta || raw.aviso));
+      aviso(txt(raw.pergunta || raw.aviso, 500) || 'Não consegui montar uma trilha com esse pedido. Tente descrever o projeto de outro jeito.', true);
       return;
     }
 
-    jor = {
-      projeto: txt(raw.projeto, 60) || txt(projeto, 60),
-      resumo: txt(raw.resumo, 300),
-      origem, nivel, criada: Date.now(), marcos,
-    };
-    gravar();
-    criando = false;
-    aberta = null;
-    history.replaceState(null, '', location.pathname);
-    render();
-    toast(origem === 'ia' ? 'Sua jornada está pronta' : 'Jornada montada localmente: a IA não respondeu');
+    salvarJornada(raw, marcos, origem, projeto);
+  }
+
+  /** "Montar sem responder": pula a IA e usa o plano por palavras-chave. */
+  function montarSemIA() {
+    if (ocupado) return;
+    const base = pendente;
+    const projeto = base ? base.projeto : txt($('#projeto').value, 400);
+    if (projeto.length < 4) { aviso('Conte em uma frase o que você quer construir.', true); return; }
+    const detalhes = base ? base.detalhes : txt($('#detalhes').value, 200);
+    const raw = planoLocal(projeto + ' ' + detalhes);
+    const marcos = normalizar(raw, acesasIds());
+    if (!marcos.length) {
+      aviso(txt(raw.pergunta, 500) || 'Não consegui montar uma trilha com esse pedido.', true);
+      return;
+    }
+    salvarJornada(raw, marcos, 'local', projeto);
   }
 
   /* ---------------- render ---------------- */
@@ -539,9 +605,37 @@
     try { history.replaceState(null, '', '?estrela=' + encodeURIComponent(sid)); } catch {}
   }
 
+  /* ---------------- minhas trilhas (catálogo) ---------------- */
+
+  function renderMinhas() {
+    const box = $('#jor-trilhas');
+    if (!box) return;
+    const lista = $('#lista-trilhas-jor');
+    const ts = L.estado && Array.isArray(L.estado.trilhas) ? L.estado.trilhas : [];
+    box.hidden = false;
+    if (!ts.length) {
+      lista.innerHTML = '<p class="jor-minhas-vazio">Nenhuma trilha do catálogo ainda. ' +
+        '<a href="index.html">Escolha uma trilha</a> e o progresso dela aparece aqui.</p>';
+      return;
+    }
+    lista.innerHTML = ts.map((t) => {
+      const p = L.progressoTrilha(t.id);
+      return '<a class="jor-minha" href="index.html?trail=' + encodeURIComponent(t.id) + '" title="abrir as aulas desta trilha">' +
+        '<span class="jor-minha-icone">' + (t.icone || '🌙') + '</span>' +
+        '<span class="jor-minha-info"><b>' + esc(t.nome) + '</b>' +
+          '<span class="tiny">' + p.feitas + '/' + p.total + ' aulas · ' + p.pct + '%</span>' +
+          '<span class="jor-minha-barra"><i style="width:' + p.pct + '%"></i></span>' +
+        '</span>' +
+        '<span class="jor-minha-seta">→</span>' +
+      '</a>';
+    }).join('');
+  }
+
   function render() {
     const temJor = !!jor;
+    renderMinhas();
     $('#jor-criar').hidden = temJor && !criando;
+    $('#jor-pergunta').hidden = !(pendente && criando);
     $('#jor-lista').hidden = !temJor;
     $('#btn-cancelar').hidden = !(temJor && criando);
     $('#criar-nota').hidden = !(temJor && criando);
@@ -709,6 +803,8 @@
 
     if (alvo('[data-nova]')) {
       criando = true;
+      limparPergunta();
+      aviso('');
       render();
       $('#jor-criar').scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(() => $('#projeto').focus(), 250);
@@ -736,8 +832,22 @@
       '<button type="button" role="radio" data-nivel="' + n[0] + '" aria-checked="' + (n[0] === nivel) + '">' + n[1] + '</button>').join('');
   }
 
-  $('#btn-montar').addEventListener('click', montar);
-  $('#btn-cancelar').addEventListener('click', () => { criando = false; aviso(''); render(); });
+  $('#btn-montar').addEventListener('click', () => montar());
+  $('#btn-responder-ia').addEventListener('click', () => {
+    const r = txt($('#resposta-ia').value, 400);
+    if (r.length < 2) {
+      aviso('Escreva uma resposta para o Lunox — ou monte sem responder.', true);
+      $('#resposta-ia').focus();
+      return;
+    }
+    aviso('');
+    montar(r);
+  });
+  $('#btn-plano-local').addEventListener('click', montarSemIA);
+  $('#resposta-ia').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) $('#btn-responder-ia').click();
+  });
+  $('#btn-cancelar').addEventListener('click', () => { criando = false; aviso(''); limparPergunta(); render(); });
   $('#projeto').addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) montar(); });
 
   // voltou do exercício (cache do navegador): relê o estado das estrelas

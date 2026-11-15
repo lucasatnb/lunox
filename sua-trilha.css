@@ -177,3 +177,54 @@
   .grupo-tags{display:none}
   .desafio-vazio{align-items:flex-start;flex-direction:column}
 }
+
+/* ---------------- minhas trilhas (catálogo) ---------------- */
+.jor-minhas{max-width:760px;margin-bottom:18px}
+.jor-minhas .panel-head{align-items:baseline;gap:8px;flex-wrap:wrap}
+.jor-minhas-lista{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.jor-minhas-vazio{margin:0;font-size:13px;color:var(--dim);line-height:1.6}
+.jor-minhas-vazio a{color:var(--gold)}
+.jor-minha{
+  display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--txt);
+  border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);
+  padding:10px 12px;transition:border-color .15s,background .15s;
+}
+.jor-minha:hover{border-color:var(--line2);background:rgba(255,255,255,.055)}
+.jor-minha-icone{flex:none;font-size:17px;line-height:1}
+.jor-minha-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.jor-minha-info b{font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jor-minha-barra{display:block;height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.jor-minha-barra i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--gold))}
+.jor-minha-seta{flex:none;color:var(--dim2)}
+
+/* ---------------- pergunta da IA ---------------- */
+.jor-pergunta{
+  margin-top:16px;padding:14px 15px;border-radius:14px;
+  background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.34);
+}
+.jor-pergunta-head{margin-bottom:6px}
+.jor-pergunta-selo{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+  color:#cbb8ff;border:1px solid rgba(124,92,255,.45);border-radius:999px;padding:2px 8px;
+}
+.jor-pergunta-txt{margin:0 0 4px;font-size:14px;line-height:1.6;color:#e7e1ff}
+.jor-pergunta .jor-label{margin-top:12px}
+.jor-pergunta .row .btn{flex:1 1 auto}
+
+/* ---------------- mobile ---------------- */
+@media (max-width:760px){
+  .jor-criar,.jor-minhas{max-width:none}
+  .jor-minhas{margin-bottom:14px}
+  .jor-pergunta .row{flex-direction:column;align-items:stretch}
+  .jor-pergunta .row .btn{width:100%}
+  .no-acoes .btn{flex:1 1 auto;justify-content:center}
+  .desafio-acoes{flex-direction:column;align-items:stretch}
+  .desafio-acoes .btn{width:100%;text-align:center;justify-content:center}
+  .desafio-head{font-size:13px}
+  .marco-head h2{font-size:16px}
+  .jor-progresso{gap:10px}
+  .jor-barra{min-width:100%}
+  .video-partes button{flex:1 1 auto}
+  .jor-minha{padding:10px}
+  .jor-minha-info b{white-space:normal}
+}

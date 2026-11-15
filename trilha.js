@@ -44,6 +44,20 @@
     '</div>';
   }
 
+  /* A jornada montada pela IA também aparece aqui e vive em "Sua trilha". */
+  function jornadaItem() {
+    const j = L.resumoJornada ? L.resumoJornada() : null;
+    if (!j) return '';
+    return '<a class="trail-item jornada-item" href="sua-trilha.html" title="abrir a jornada em Sua trilha">' +
+      '<span style="font-size:16px">✦</span>' +
+      '<span class="ti-info">' +
+        '<span class="ti-name">' + esc(j.projeto) + '</span>' +
+        '<span class="ti-meta">' + j.feitas + '/' + j.total + ' estrelas · jornada em Sua trilha</span>' +
+      '</span>' +
+      '<span class="ti-check">→</span>' +
+    '</a>';
+  }
+
   function aulaCard(t, a, i) {
     const pr = L.progressoDe(t.id)[i] || {};
     const s = L.skill(a.skill);
@@ -93,7 +107,7 @@
   function render() {
     const t = L.atualObj();
     $('#conta-trilhas').textContent = '(' + L.estado.trilhas.length + ')';
-    $('#lista-trilhas').innerHTML = L.estado.trilhas.map(trailItem).join('');
+    $('#lista-trilhas').innerHTML = jornadaItem() + L.estado.trilhas.map(trailItem).join('');
 
     const nivel = L.nivelGato();
     $('#gato').src = L.imgGato(nivel);
@@ -107,12 +121,18 @@
     const btn = $('#btn-concluir');
 
     if (!t) {
-      $('#titulo').textContent = 'Nenhuma trilha ainda';
-      $('#sub').textContent = 'Crie uma trilha para começar — ou peça ao Lunox para montar a partir do seu objetivo.';
+      const j = L.resumoJornada ? L.resumoJornada() : null;
+      $('#titulo').textContent = j ? j.projeto : 'Nenhuma trilha ainda';
+      $('#sub').textContent = j
+        ? 'Sua jornada está salva em Sua trilha — ' + j.feitas + ' de ' + j.total + ' estrelas acesas.'
+        : 'Crie uma trilha para começar — ou peça ao Lunox para montar a partir do seu objetivo.';
       $('#meta').innerHTML = '';
-      $('#aulas').innerHTML = '<div class="panel"><h3>Você está no início</h3>' +
-        '<p class="lead" style="margin:8px 0 14px">Escolha um projeto e o Lunox monta as aulas. Cada projeto acende novas estrelas.</p>' +
-        '<a class="btn primary" href="sua-trilha.html?nova=1">Criar minha primeira trilha</a></div>';
+      $('#aulas').innerHTML = '<div class="panel"><h3>' + (j ? 'Sua jornada está em Sua trilha' : 'Você está no início') + '</h3>' +
+        '<p class="lead" style="margin:8px 0 14px">' + (j
+          ? 'A trilha que você montou aparece na aba Sua trilha, com as aulas e o progresso salvos.'
+          : 'Escolha um projeto e o Lunox monta as aulas. Cada projeto acende novas estrelas.') + '</p>' +
+        '<a class="btn primary" href="sua-trilha.html' + (j ? '' : '?nova=1') + '">' +
+          (j ? 'Abrir Sua trilha' : 'Criar minha primeira trilha') + '</a></div>';
       $('#feitas').textContent = '0';
       $('#total').textContent = '0';
       $('#pct').textContent = '0%';
@@ -167,6 +187,7 @@
 
     const item = e.target.closest('.trail-item');
     if (item) {
+      if (item.classList.contains('jornada-item')) return; // link para Sua trilha
       L.setAtual(item.getAttribute('data-id'));
       abertas.clear();
       abertas.add(0);
@@ -205,6 +226,13 @@
   });
 
   /* ---------------- boot ---------------- */
+
+  // ?trail=<id> abre direto uma trilha salva (usado pela aba Sua trilha)
+  const pedida = new URLSearchParams(location.search).get('trail');
+  if (pedida && L.achar(pedida)) {
+    L.setAtual(pedida);
+    history.replaceState(null, '', location.pathname);
+  }
 
   render();
 

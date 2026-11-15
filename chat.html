@@ -16,13 +16,13 @@
 
   <section class="trail-hero" style="margin-bottom:18px">
     <div>
-      <div class="kicker">Converse com o Lunox</div>
-      <h1>Diga o que você quer construir.</h1>
-      <p class="lead">O gatinho pergunta o que você já sabe e monta a trilha do seu projeto — com aulas, código e validação.</p>
+      <div class="kicker">Converse sobre as trilhas</div>
+      <h1>Qual trilha você quer seguir?</h1>
+      <p class="lead">O Lunox fala do seu progresso, da próxima estrela e de ideias de trilhas novas — nada fora disso.</p>
     </div>
     <div class="trail-actions">
       <span class="badge-demo" id="modo-badge">modo roteiro</span>
-      <a class="btn ghost" href="index.html">Ver minha trilha</a>
+      <a class="btn ghost" href="index.html">Ver minhas trilhas</a>
     </div>
   </section>
 
@@ -55,13 +55,13 @@
           <span class="panel-title">Como o Lunox monta</span>
         </div>
         <div class="lembra">
-          <div><b>1.</b> Você conta o projeto</div>
-          <div><b>2.</b> Ele checa o que você já sabe</div>
-          <div><b>3.</b> Monta a trilha e acende as estrelas</div>
+          <div><b>1.</b> Você escolhe uma trilha ou descreve o projeto</div>
+          <div><b>2.</b> Ele olha o que você já sabe</div>
+          <div><b>3.</b> Monta a jornada e acompanha aula por aula</div>
         </div>
         <label class="switch" style="margin-top:14px">
           <input type="checkbox" id="modo-ia">
-          <span><b>Usar IA de verdade</b><br><span class="tiny">Groq + NVIDIA pela rota em cascata</span></span>
+          <span><b>Usar IA de verdade</b><br><span class="tiny">respostas da IA com o roteiro local como plano B</span></span>
         </label>
         <p class="tiny" style="margin:10px 0 0">No modo roteiro a resposta é instantânea. A IA real entra quando você quiser testar o roteador.</p>
       </div>
@@ -71,7 +71,8 @@
           <span class="panel-title">Suas trilhas</span>
         </div>
         <div class="mini-trails" id="mini-trilhas"></div>
-        <a class="btn small" href="index.html" style="width:100%;margin-top:9px;justify-content:center">Ver trilha atual</a>
+        <a class="btn small" href="index.html" style="width:100%;margin-top:9px;justify-content:center">Ver trilhas</a>
+        <button class="btn small ghost" type="button" data-limpar style="width:100%;margin-top:7px;justify-content:center">Limpar conversa</button>
       </div>
 
       <div class="panel pet-mini">
@@ -95,7 +96,7 @@
   <div class="big">Aprenda construindo. <span>Acenda suas estrelas.</span></div>
   <p>Demo do esboço · novembro de 2026</p>
   <div class="links">
-    <a href="index.html">Trilha</a>
+    <a href="index.html">Trilhas</a>
     <a href="habilidades.html">Mapa das estrelas</a>
     <a href="programar.html">Programar</a>
     <a href="pitch.html">Apresentação do produto</a>
@@ -103,6 +104,8 @@
 </footer>
 
 <script src="app-core.js"></script>
+<script src="estrelas-extra.js"></script>
+<script src="estrelas-catalogo.js"></script>
 <script src="chat.js"></script>
 <script src="conta.js"></script>
 </body>

@@ -171,6 +171,9 @@ h3{font-size:15.5px;margin:0 0 6px}
 }
 .trail-item:hover .ti-del{opacity:1}
 .ti-del:hover{color:var(--danger);background:rgba(251,113,133,.1)}
+.trail-item.jornada-item{text-decoration:none;background:rgba(124,92,255,.09);border-color:rgba(124,92,255,.26)}
+.trail-item.jornada-item:hover{background:rgba(124,92,255,.15);border-color:rgba(124,92,255,.4)}
+.trail-item.jornada-item .ti-meta{color:#a99be0}
 .novo-btn{width:100%;margin-top:10px;justify-content:center}
 
 .progress-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:12.5px;color:var(--dim)}
@@ -251,6 +254,9 @@ h3{font-size:15.5px;margin:0 0 6px}
 .chat-box{
   display:flex;flex-direction:column;height:calc(100vh - 240px);min-height:480px;
   background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+}
+@supports (height:100dvh){
+  .chat-box{height:calc(100dvh - 240px)}
 }
 .chat-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
 .chat-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,215,0,.28);background:#141029}
@@ -516,12 +522,21 @@ body.df-aberto{overflow:hidden}
   .map-viewport{max-height:56vh}
 }
 @media (max-width:760px){
-  .topbar-in{padding:9px 14px;gap:10px;flex-wrap:wrap}
-  .tabs{order:3;width:100%;overflow:auto;margin-left:0;padding-bottom:2px}
-  .tab{padding:7px 10px;font-size:12px}
+  .topbar-in{padding:8px 12px;gap:8px;flex-wrap:wrap}
+  .brand{font-size:15px}
+  .tabs{order:3;width:100%;overflow-x:auto;overflow-y:hidden;margin-left:0;padding-bottom:2px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;padding:7px 11px;font-size:12px;white-space:nowrap}
+  .top-meta{gap:6px}
   .top-meta .chip.ofensiva,.top-meta .chip.pontos{font-size:10px;padding:3px 7px}
   .top-meta .badge-demo{display:none}
-  .page{padding:20px 14px 44px}
+  .page{padding:18px 13px 40px}
+  .trail-hero{gap:14px;margin-bottom:16px}
+  .trail-hero h1{font-size:clamp(24px,7vw,34px)}
+  .trail-hero .lead{font-size:13.5px}
+  .trail-actions{width:100%}
+  .trail-actions .btn{flex:1 1 auto;justify-content:center}
   .preset-grid{grid-template-columns:1fr}
   .aula-head{padding:12px}
   .aula-body{padding:0 12px 13px}
@@ -530,4 +545,30 @@ body.df-aberto{overflow:hidden}
   .passo .p-act .btn{width:100%}
   .trail-hero{padding-top:4px}
   .aside{order:2}
+  .panel{padding:14px}
+  .progress-line{flex-wrap:wrap;gap:8px}
+  .trail-item{flex-wrap:wrap}
+  .ti-name{white-space:normal}
+  .ti-del{opacity:1}
+
+  /* chat no celular */
+  .chat-layout{display:flex;flex-direction:column;gap:14px}
+  .chat-box{height:auto;min-height:0;border-radius:16px}
+  .chat-head{padding:10px 13px}
+  .chat-head .mode{font-size:10px;padding:3px 8px}
+  .chat-log{padding:13px;gap:9px;min-height:46vh;max-height:60dvh}
+  .msg{max-width:94%;font-size:14px;padding:10px 12px}
+  .chat-compose{padding:10px}
+  .sugestoes{gap:5px;margin-bottom:8px}
+  .sug{font-size:11px;padding:5px 9px}
+  .chat-input{font-size:16px;padding:12px 13px}
+  .chat-send{padding:0 15px;font-size:14px}
+  .trail-card .row .btn{flex:1 1 auto}
+  .footer{padding:22px 14px 34px}
+  .footer .links{gap:10px}
+}
+@media (max-width:420px){
+  .top-meta .chip.pontos{display:none}
+  .tab{padding:6px 9px;font-size:11.5px}
+  .msg{max-width:97%}
 }
