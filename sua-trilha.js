@@ -391,6 +391,8 @@
   function mostrarPergunta(texto) {
     const box = $('#jor-pergunta');
     if (!box) return;
+    // garante que o painel de criação está aberto (a pergunta vive dentro dele)
+    if (!criando) { criando = true; render(); }
     box.hidden = false;
     $('#jor-pergunta-txt').textContent = texto;
     $('#resposta-ia').value = '';
